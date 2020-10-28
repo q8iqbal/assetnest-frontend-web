@@ -1,0 +1,49 @@
+
+body{
+    background-image: url('../../assets/svg/login-background.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+
+    #root{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.login-form{
+    border-radius: 3% !important;
+    height: 40em;
+    width: 30em;
+    @media only screen and (max-width: 425px) {
+        margin-left: 2rem;
+        margin-right: 2rem;
+        height: auto;
+        width: auto;
+    }
+}
+
+.app-logo{
+    background-image: url("../../assets/pictures/logo_horizontal.png") 0 0;
+}
+
+form{
+    margin-top: -1rem;
+    input{
+        margin-bottom: 1em;
+        width: 100%;
+    }
+}
+
+h1{
+    font-weight: bold !important;
+    font-size: 4rem !important;
+}
+
+a{
+    font-weight: bold !important;
+}
+
+
