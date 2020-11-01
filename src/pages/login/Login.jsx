@@ -44,7 +44,6 @@ export default function Login() {
             //get company data
             axios.get(GET_COMPANY)
             .then(response => {
-                console.log(response)
                 setCompany(response.data.data)
             })
             
