@@ -1,15 +1,12 @@
-body{
-    background-image: url('./login-background.svg');
-    background-size: cover;
+.login-page{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('./login-background.svg');
     background-repeat: no-repeat;
-    height: 100%;
-
-    #root{
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    background-size: cover;
 }
 
 .login-form{
@@ -22,45 +19,34 @@ body{
         height: 25rem;
         width: 35rem;
     }
-}
 
-.app-logo{
-    width: 80%;
-    background-image: url("./assetnest-horizontal.svg") 0 0;
-}
-
-form{
-    width: 70%;
-    @media only screen and (max-width: 425px) {
-        width: 75%;
+    .app-logo{
+        width: 80%;
+        background-image: url("./assetnest-horizontal.svg") 0 0;
     }
 
-    div{
-        width: 100%;
-        margin-bottom: 1.5rem !important;
-        a{
-            font-weight: bold;
-            margin-top: .5rem;
-            margin-bottom: .5rem;
+    form{
+        width: 70%;
+        @media only screen and (max-width: 425px) {
+            width: 75%;
+        }
+    
+        div{
+            width: 100%;
+            margin-bottom: 1.5rem !important;
+            a{
+                font-weight: bold;
+                margin-top: .5rem;
+                margin-bottom: .5rem;
+            }
+        }
+    
+        button{
+            font-weight: bold !important;
+        }
+    
+        .form-control{
+            height: calc(2em + 0.75rem + 2px);
         }
     }
-
-    button{
-        font-weight: bold !important;
-    }
-
-    .form-control{
-        height: calc(2em + 0.75rem + 2px);
-    }
 }
-
-h1{
-    font-weight: bold !important;
-    font-size: 4rem !important;
-}
-
-a{
-    font-weight: bold !important;
-}
-
-
