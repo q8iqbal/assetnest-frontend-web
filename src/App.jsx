@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter as Router, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Redirect, Switch} from 'react-router-dom'
 import { createBrowserHistory } from "history"
 import { APP_ROUTE } from "./Routes"
 import PrivateRoute from "./components/PrivateRoute"
@@ -9,7 +9,7 @@ import "./App.scss"
 export const history = createBrowserHistory();
 export default function App() {
   return (
-    <Router>
+    <Router >
       <Switch>
         {APP_ROUTE.map((value, index) => {
           if (value.private){
@@ -29,6 +29,8 @@ export default function App() {
             />)
           }
         })}
+        
+        <Redirect to="/404"/>
       </Switch>
     </Router>
   )
