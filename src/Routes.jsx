@@ -1,5 +1,6 @@
 import Login from "./pages/login/Login";
 import Home from "./pages/home/Home"
+import Error from "./components/404/Error"
 
 export const APP_ROUTE = [
     {
@@ -12,10 +13,18 @@ export const APP_ROUTE = [
     },
     {
         name : "Home",
-        path : "/",
-        exact : true,
+        path : "/home",
+        exact : false,
         component : Home,
         restricted : true,
-        private : true
+        private : false,
+    },
+    {
+        name : "404",
+        path : "/404",
+        exact : true,
+        component : Error,
+        restricted : false,
+        private : false,
     }
 ]

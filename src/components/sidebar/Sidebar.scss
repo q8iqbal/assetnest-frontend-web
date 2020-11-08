@@ -1,0 +1,57 @@
+.wrapper{
+    overflow-x: hidden;
+
+    .button-sidebar{
+        display: none;
+    }
+
+    .button-text{
+        font-weight: 600 !important;
+    }
+
+    .page-wrapper{
+        min-width: 0;
+        width: 100%;
+    }
+
+    .sidebar-wrapper{
+        min-height: 100vh;
+        width: 28rem;
+    }
+
+    .dropdown-menu{
+        min-width: 8rem !important;
+    }
+
+    .item-group{
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .navbar-font{
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    @media only screen and (max-width: 768px){
+        .sidebar-wrapper{
+            -webkit-transition: margin .25s ease-out;
+            -moz-transition: margin .25s ease-out;
+            -o-transition: margin .25s ease-out;
+            transition: margin .25s ease-out;
+            width: 25rem;
+        }
+
+        .button-sidebar{
+            display: inline;
+        }
+
+        .hidden{
+            margin-left: -25rem;
+        }
+    
+        .showed{
+            margin-left: 0rem;
+        }
+    }
+}
