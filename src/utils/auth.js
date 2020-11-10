@@ -2,8 +2,19 @@ import axios from 'axios'
 
 const USER = "USER"
 const COMPANY = "COMPANY"
+const TOKEN = "token"
 
 
+const accessCookie = cookieName => {
+    let name = cookieName + "="
+    let allCookieArray = document.cookie.split(';')
+    for(let i=0 ; i < allCookieArray.length; i++){
+        let temp = allCookieArray[i].trim()
+        if(temp.indexOf(name)===0)
+            return temp.substring(name.length, temp.length)
+    }
+    return ""
+}
 
 //user
 export const login = (data) => {
@@ -15,11 +26,11 @@ export const login = (data) => {
 export const logout = () => {
     localStorage.removeItem(USER)
     localStorage.removeItem(COMPANY)
-    document.cookie = "token=;expires="+new Date(Date.now()).toUTCString()
+    document.cookie = TOKEN+"=;expires="+new Date(Date.now()).toUTCString()
 };
 
 export const isLogin = () => {
-    if (localStorage.getItem(USER)) {
+    if (accessCookie(TOKEN) !== "") {
         return true;
     }
     return false;

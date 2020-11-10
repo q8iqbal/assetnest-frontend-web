@@ -9,7 +9,7 @@ export default function PublicRoute({component : Component, restricted ,...rest}
             render={(props) => isLogin() && restricted ?(
                 <Redirect to="/home"/>
             ):(
-                <Component {...props} path={props.path}/>
+                <Component {...props}/>
             )
             }
         />

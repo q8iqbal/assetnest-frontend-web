@@ -59,7 +59,7 @@ export default function Sidebar(props) {
                     <Navbar.Brand className="ml-2 navbar-font">Nama Perusahaan</Navbar.Brand>
                         <Dropdown className="ml-auto">
                             <Dropdown.Toggle className="text-light">
-                                <img src="https://source.unsplash.com/random" alt="user picture" className="rounded-circle mr-2" width="30rem" height="30rem"/>
+                                <img src="https://source.unsplash.com/random" alt="user" className="rounded-circle mr-2" width="30rem" height="30rem"/>
                                 <span className="d-none d-md-inline button-text">Iqbal Nur I</span>
                             </Dropdown.Toggle>
 

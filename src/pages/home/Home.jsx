@@ -3,7 +3,6 @@ import Sidebar from "../../components/sidebar/Sidebar"
 import { Switch, Route } from 'react-router-dom'
 import { USER_ROUTE } from '../../Routes'
 import PrivateRoute from '../../components/PrivateRoute'
-import PublicRoute from '../../components/PublicRoute'
 import Error from "../../components/404/Error"
 
 
@@ -14,12 +13,10 @@ export default function Home() {
         <>
             <Sidebar Route={USER_ROUTE} >
                 <Switch>
-
-                    //page-content
                     {
                         USER_ROUTE.map( value => {
                             return (
-                                <PublicRoute
+                                <PrivateRoute
                                 key={value.name}
                                 component={value.component}
                                 path={value.path}
