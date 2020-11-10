@@ -1,24 +1,35 @@
 import React from 'react'
-import Sidebar from "../../components/sidebar/Sidebar";
-
-import { Switch, Route, Redirect } from 'react-router-dom';
-
-import Dashboard from "../../components/dashboard/Dashboard";
-import History from "../../components/history/History";
-import Asset from "../../components/asset/Asset";
+import Sidebar from "../../components/sidebar/Sidebar"
+import { Switch, Route } from 'react-router-dom'
+import { USER_ROUTE } from '../../Routes'
+import PrivateRoute from '../../components/PrivateRoute'
+import PublicRoute from '../../components/PublicRoute'
+import Error from "../../components/404/Error"
 
 
 export default function Home() {
+
+
     return (
         <>
-        <Sidebar >
-            <Switch>
-                <Route exact key="0" path="/home/dashboard" render={Dashboard}/>
-                <Route exact key="1" path="/home/asset"   render={Asset}/>
-                <Route exact key="2" path="/home/history"  render={History}/>
-                <Redirect to="/home/dashboard" />
-            </Switch>
-        </Sidebar>
+            <Sidebar Route={USER_ROUTE} >
+                <Switch>
+
+                    //page-content
+                    {
+                        USER_ROUTE.map( value => {
+                            return (
+                                <PublicRoute
+                                key={value.name}
+                                component={value.component}
+                                path={value.path}
+                                exact={value.exact}/>
+                            )
+                        })
+                    }
+                    <Route component={Error} />
+                </Switch>
+            </Sidebar>
         </>
     )
 }

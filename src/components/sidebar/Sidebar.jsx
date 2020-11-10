@@ -3,34 +3,18 @@ import React , {useState}from 'react'
 import { Link, useLocation } from "react-router-dom"
 import {FaBars} from "react-icons/fa"
 import Logo from "./header_sidebar.png"
+import { logout } from "../../utils/auth"
 import "./Sidebar.scss"
 
-export const USER_ROUTE = [
-    {
-        name : "Dashboard",
-        path : "/home/dashboard",
-    },
-    {
-        name : "Asset",
-        path : "/home/asset",
-    },
-    {
-        name : "History",
-        path : "/home/history",
-    }
-]
-
-
-export default function Sidebar(props) { 
+export default function Sidebar(props) {
+    console.log(props)
     const [sidebar, setSidebar] = useState(false)
     const location = useLocation().pathname
     const [sidebarItem, setSidebarItem] = useState(()=>{
-        let idx = null
-        USER_ROUTE.map((value,index) => { 
+        let idx = 0
+        props.Route.map((value,index) => {
             if(value.path === location){
                 idx = index
-            }else if(location === "/home/" || location === "/home"){
-                idx = 0
             }
         })
         let newData = [false,false,false]
@@ -48,23 +32,29 @@ export default function Sidebar(props) {
         setSidebar(!sidebar)
     }
 
-    const clearSelectedClick = ()=> {
-        setSidebarItem([false,false,false])
+    const handleSignOut = () => {
+        logout()
+    }
+
+    const handleProfile = () => {
+        setSidebarItem([false, false, false])
     }
 
     return (
         <div className="d-flex wrapper">
             <div className={"bg-light border-right sidebar-wrapper d-flex flex-column   " + (sidebar ? " showed" : " hidden")}>
-                <img src={Logo} alt="logo bambang" className="app-logo mb-3  mt-4 px-3 mx-auto" style={{width:"21rem", height:"auto"}} />
+                <Link to="/home">
+                    <img src={Logo} alt="logo bambang" className="app-logo mb-3  mt-4 px-3 mx-auto" style={{width:"21rem", height:"auto"}} />
+                </Link>
                 <div className="list-group item-group text-left mt-5">
-                        {USER_ROUTE.map((value,idx) => (
-                            <Link onClick={getSelectedItem.bind(this, idx)} to={{pathname:value.path , state:idx}} key={idx} className={"py-3 pr-5 pl-5 my-2  list-group-item-action "+(sidebarItem[idx] ? "bg-primary text-light" : "bg-light text-dark")}>{value.name}</Link>
+                        {props.Route.map((value,idx) => (
+                            <Link hidden={value.hidden} onClick={getSelectedItem.bind(this, idx)} to={{ pathname: value.to , state:idx}} key={idx} className={"py-3 pr-5 pl-5 my-2  list-group-item-action "+(sidebarItem[idx] ? "bg-primary text-light" : "bg-light text-dark")}>{value.name}</Link>
                         ))}
                 </div>
             </div>
 
             <div className="page-wrapper">
-                <Navbar bg="primary" variant="dark" className="py-3">
+                <Navbar bg="primary" variant="dark" className="" style={{minHeight:"10%"}}>
                     <Button onClick={handleCLick} className="button-sidebar"><FaBars/></Button>
                     <Navbar.Brand className="ml-2 navbar-font">Nama Perusahaan</Navbar.Brand>
                         <Dropdown className="ml-auto">
@@ -74,13 +64,13 @@ export default function Sidebar(props) {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu >
-                                <Dropdown.Item href="">Profile</Dropdown.Item>
+                                <Dropdown.Item onClick={handleProfile}><Link to="/home/profile" className="text-decoration-none text-dark">Profile</Link></Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item href="">Sign Out</Dropdown.Item>
+                                <Dropdown.Item onClick={handleSignOut}>Sign Out</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                 </Navbar>
-                <div id="page-content">
+                <div id="page-content" className="d-flex" style={{minHeight:"90%"}}>
                     {props.children}
                 </div>
             </div>

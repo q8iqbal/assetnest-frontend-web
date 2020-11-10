@@ -1,6 +1,10 @@
 import Login from "./pages/login/Login";
 import Home from "./pages/home/Home"
 import Error from "./components/404/Error"
+import Dashboard from "./components/dashboard/Dashboard";
+import History from "./components/history/History";
+import Asset from "./components/asset/Asset";
+import Profile from "./components/profile/Profile";
 
 export const APP_ROUTE = [
     {
@@ -10,6 +14,14 @@ export const APP_ROUTE = [
         component : Login,
         restricted : true,
         private : false
+    },
+    {
+        name : "Home",
+        path : "/",
+        exact : true,
+        component : Home,
+        restricted : true,
+        private : true,
     },
     {
         name : "Home",
@@ -26,5 +38,37 @@ export const APP_ROUTE = [
         component : Error,
         restricted : false,
         private : false,
+    }
+]
+
+export const USER_ROUTE = [
+    {
+        name : "Dashboard",
+        path : ["/home/dashboard" , "/home"],
+        to : "/home/dashboard",
+        exact : true,
+        component : Dashboard,
+    },
+    {
+        name : "Asset",
+        path : "/home/asset",
+        to : "/home/asset",
+        exact : true,
+        component : Asset,
+    },
+    {
+        name : "History",
+        path : "/home/history",
+        to : "/home/history",
+        exact : true,
+        component : History,
+    },
+    {
+        name : "Profile",
+        path : "/home/profile",
+        to : "/home/profile",
+        exact : true,
+        hidden : true,
+        component : Profile,
     }
 ]
