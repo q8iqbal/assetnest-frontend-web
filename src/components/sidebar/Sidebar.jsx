@@ -60,11 +60,11 @@ export default function Sidebar(props) {
             <div className="page-wrapper">
                 <Navbar bg="primary" variant="dark" className="" style={{minHeight:"10%"}}>
                     <Button onClick={handleCLick} className="button-sidebar"><FaBars/></Button>
-                    <Navbar.Brand className="ml-2 navbar-font">Nama Perusahaan</Navbar.Brand>
+                    <Navbar.Brand className="ml-2 navbar-font"> {props.companyName} </Navbar.Brand>
                         <Dropdown className="ml-auto">
                             <Dropdown.Toggle className="text-light">
-                                <img src={props.image} alt="user" className="rounded-circle mr-2" width="30rem" height="30rem"/>
-                                <span className="d-none d-md-inline button-text"> {props.name} </span>
+                                <img src={props.userImage} alt="user" className="rounded-circle mr-2" width="30rem" height="30rem"/>
+                                <span className="d-none d-md-inline button-text"> {props.userName} </span>
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu >
