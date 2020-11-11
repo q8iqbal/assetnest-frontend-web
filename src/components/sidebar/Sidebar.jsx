@@ -74,7 +74,7 @@ export default function Sidebar(props) {
                             </Dropdown.Menu>
                         </Dropdown>
                 </Navbar>
-                <div id="page-content" className="d-flex" style={{minHeight:"90%"}}>
+                <div id="page-content" className="p-3" style={{minHeight:"90%"}}>
                     {props.children}
                 </div>
             </div>
