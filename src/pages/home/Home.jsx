@@ -4,14 +4,17 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { USER_ROUTE } from '../../Routes'
 import PrivateRoute from '../../components/PrivateRoute'
 import Error from "../../components/404/Error"
+import { getUser } from "../../utils/auth"
+import { BASE_URL } from "../../constants/urls";
+
 
 
 export default function Home() {
-
+    const userData = getUser()
 
     return (
         <>
-            <Sidebar Route={USER_ROUTE} >
+            <Sidebar route={USER_ROUTE} name={userData.name} image={BASE_URL+userData.image}>
                 <Switch>
                     {
                         USER_ROUTE.map( value => {
@@ -25,7 +28,6 @@ export default function Home() {
                         })
                     }
                     <Route component={Error} />
-                    <Redirect to="/home/" />
                 </Switch>
             </Sidebar>
         </>
