@@ -1,0 +1,15 @@
+.asset-detail{
+    h3, h4, span {
+        font-family: Poppins;
+        font-weight: 500 !important;
+    }
+    
+    .detail-option{
+        border-bottom: 0.3rem solid #ff7b4b;
+    }
+    
+    .disabled{
+        opacity: 50%;
+        border: none;
+    }
+}
