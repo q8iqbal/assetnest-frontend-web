@@ -9,7 +9,7 @@ const TOKEN = "JWT_TOKEN"
 export const login = (data) => {
     localStorage.setItem(USER, JSON.stringify(data.user) )
     // document.cookie = "token="+data.token+"; expires="+new Date(Date.now() + data.expires_in*100).toUTCString()
-    const expiresDate = new Date(Date.now() + data.expires_in*100)
+    const expiresDate = new Date(Date.now() + data.expires_in*1000)
     Cookie.set(TOKEN, data.token, { expires: expiresDate})
     axios.defaults.headers.common['Authorization'] = 'Bearer'+data.token
 }; 
