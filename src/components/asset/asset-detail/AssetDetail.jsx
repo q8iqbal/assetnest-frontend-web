@@ -9,17 +9,19 @@ export default function AssetDetail() {
   const [attachment, setAttachment] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/assets/2', {
+    axios.get('http://localhost:8080/assets/2', {
       headers: {
-        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvbG9naW4iLCJpYXQiOjE2MDUwODczNzQsImV4cCI6MTYwNTA5MDk3NCwibmJmIjoxNjA1MDg3Mzc0LCJqdGkiOiJOVWI4TXJRZ25RWTFrcGRnIiwic3ViIjo1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-adXxoyGRFc2we95Y98U52WU_N7Lezf5V2ftwjb4nH0'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+        // 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvbG9naW4iLCJpYXQiOjE2MDUwOTY5ODcsImV4cCI6MTYwNTEwMDU4OCwibmJmIjoxNjA1MDk2OTg4LCJqdGkiOiJpSUdSbTJNVkM4c3BPUHpHIiwic3ViIjo1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.tl4Lk9ZtCOhB7zSuaHwSV93Y7AuDLAPA1eg7TbfLFnQ'
       }
     })
     .then((response) => {
       setAsset(response.data.data);
 
-      axios.get('http://localhost:8000/assets/1/attachment',{
+      axios.get('http://localhost:8080/assets/1/attachment',{
         headers: {
-          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvbG9naW4iLCJpYXQiOjE2MDUwODczNzQsImV4cCI6MTYwNTA5MDk3NCwibmJmIjoxNjA1MDg3Mzc0LCJqdGkiOiJOVWI4TXJRZ25RWTFrcGRnIiwic3ViIjo1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-adXxoyGRFc2we95Y98U52WU_N7Lezf5V2ftwjb4nH0'
+          // 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvbG9naW4iLCJpYXQiOjE2MDUwOTY5ODcsImV4cCI6MTYwNTEwMDU4OCwibmJmIjoxNjA1MDk2OTg4LCJqdGkiOiJpSUdSbTJNVkM4c3BPUHpHIiwic3ViIjo1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.tl4Lk9ZtCOhB7zSuaHwSV93Y7AuDLAPA1eg7TbfLFnQ'
         }
       })
       .then((response) => {
@@ -36,7 +38,7 @@ export default function AssetDetail() {
         <div className="main col-md-5">
             <h3><span className="text-primary">#</span>{asset.code}</h3>
             <h3>{asset.name}</h3>
-            <img src={"http://localhost:8000" + asset.image} className="rounded mb-3 img-fluid w-100"/>
+            <img src={"http://localhost:8080" + asset.image} className="rounded mb-3 img-fluid w-100"/>
             <h4 className="text-primary">Files Attachment</h4>
             {attachment.map(attachment => 
               <AssetAttachment key={attachment.id} attachment={attachment}/>
