@@ -17,7 +17,7 @@ export const APP_ROUTE = [
     },
     {
         name : "Home",
-        path : ['/', '/home'],
+        path : ['/home/' , '/'],
         exact : false,
         component : Home,
         restricted : true,
@@ -36,7 +36,7 @@ export const APP_ROUTE = [
 export const USER_ROUTE = [
     {
         name : "Dashboard",
-        path : ["/home/dashboard" , "/home"],
+        path : ["/home/dashboard" , "/home" , "/"],
         to : "/home/dashboard",
         exact : true,
         component : Dashboard,
