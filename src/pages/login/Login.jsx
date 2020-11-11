@@ -48,7 +48,7 @@ export default function Login() {
             })
             
             //change to dashboard
-            history.push("/dashboard")
+            history.push("/home/")
         })
         .catch(errors => {
             setShow(true) // show error can't login
