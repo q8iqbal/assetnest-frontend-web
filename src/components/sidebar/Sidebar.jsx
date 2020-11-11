@@ -3,7 +3,7 @@ import React , {useState}from 'react'
 import { Link, useLocation , useHistory} from "react-router-dom"
 import {FaBars} from "react-icons/fa"
 import Logo from "./header_sidebar.png"
-import { logout } from "../../utils/auth"
+import { logout, getUser } from "../../utils/auth"
 import "./Sidebar.scss"
 
 export default function Sidebar(props) {
@@ -41,6 +41,9 @@ export default function Sidebar(props) {
         setSidebarItem([false, false, false])
     }
 
+    const userData = getUser()
+    console.log(userData)
+
     return (
         <div className="d-flex wrapper">
             <div className={"bg-light border-right sidebar-wrapper d-flex flex-column   " + (sidebar ? " showed" : " hidden")}>
@@ -61,7 +64,7 @@ export default function Sidebar(props) {
                         <Dropdown className="ml-auto">
                             <Dropdown.Toggle className="text-light">
                                 <img src="https://source.unsplash.com/random" alt="user" className="rounded-circle mr-2" width="30rem" height="30rem"/>
-                                <span className="d-none d-md-inline button-text">Iqbal Nur I</span>
+                                <span className="d-none d-md-inline button-text"> {userData.name} </span>
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu >
