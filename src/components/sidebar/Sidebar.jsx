@@ -1,13 +1,13 @@
 import { Navbar, Button, Dropdown} from "react-bootstrap"
 import React , {useState}from 'react'
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation , useHistory} from "react-router-dom"
 import {FaBars} from "react-icons/fa"
 import Logo from "./header_sidebar.png"
 import { logout } from "../../utils/auth"
 import "./Sidebar.scss"
 
 export default function Sidebar(props) {
-    console.log(props)
+    const history = useHistory();
     const [sidebar, setSidebar] = useState(false)
     const location = useLocation().pathname
     const [sidebarItem, setSidebarItem] = useState(()=>{
@@ -34,6 +34,7 @@ export default function Sidebar(props) {
 
     const handleSignOut = () => {
         logout()
+        history.push('/login')
     }
 
     const handleProfile = () => {

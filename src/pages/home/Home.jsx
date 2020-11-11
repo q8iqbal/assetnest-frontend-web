@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from "../../components/sidebar/Sidebar"
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { USER_ROUTE } from '../../Routes'
 import PrivateRoute from '../../components/PrivateRoute'
 import Error from "../../components/404/Error"
@@ -25,6 +25,7 @@ export default function Home() {
                         })
                     }
                     <Route component={Error} />
+                    <Redirect to="/home/" />
                 </Switch>
             </Sidebar>
         </>

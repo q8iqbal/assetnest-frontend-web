@@ -17,19 +17,11 @@ export const APP_ROUTE = [
     },
     {
         name : "Home",
-        path : "/",
-        exact : true,
-        component : Home,
-        restricted : true,
-        private : true,
-    },
-    {
-        name : "Home",
-        path : "/home",
+        path : ['/', '/home'],
         exact : false,
         component : Home,
         restricted : true,
-        private : false,
+        private : true,
     },
     {
         name : "404",
