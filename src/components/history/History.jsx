@@ -9,7 +9,6 @@ import { getCookie } from '../../utils/auth'
 import axios from 'axios'
 import id from 'date-fns/locale/es';
 import './History.scss'
-import { number } from 'yup';
 registerLocale('id', id)
 
 export default function History() {
@@ -56,7 +55,7 @@ export default function History() {
     const handlePage = number => {
         setPage(number)
     }
-    
+
     useEffect(()=>{
         setLoading(true)
         axios.get(GET_HISTORY+`?filter[between]=${startDate.toISOString().slice(0, 19).replace('T', ' ')},${endDate.toISOString().slice(0, 19).replace('T', ' ')}`, {
