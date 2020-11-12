@@ -3,7 +3,7 @@ import { Dropdown, Row , Col , Button, Pagination, Spinner, Modal} from "react-b
 import DatePicker,{ registerLocale } from  "react-datepicker";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { IoMdTrash } from "react-icons/io";
-import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
+import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from "react-icons/ai";
 import { GET_HISTORY, DEL_HISTORY } from '../../constants/urls'
 import { getCookie } from '../../utils/auth'
 import axios from 'axios'
@@ -56,16 +56,7 @@ export default function History() {
     const handlePage = number => {
         setPage(number)
     }
-
-    const handleNextPage = number => {
-
-    }
-
-    const handlePrevPage = number => {
-        
-    }
-
-    // console.log(date.toISOString())
+    
     useEffect(()=>{
         setLoading(true)
         axios.get(GET_HISTORY+`?filter[between]=${startDate.toISOString().slice(0, 19).replace('T', ' ')},${endDate.toISOString().slice(0, 19).replace('T', ' ')}`, {
@@ -97,8 +88,8 @@ export default function History() {
         const leftItem = (active-pageNeighbour) <= 0 ? 1 : (active-pageNeighbour)
         const rightItem = (active+pageNeighbour) > pageTotal ? pageTotal : (active+pageNeighbour)
         items.push(
-            <Pagination.Item key="before">
-                    <AiOutlineLeft />
+            <Pagination.Item key="before" onClick={()=>{handlePage(1)}}>
+                    <AiOutlineDoubleLeft />
             </Pagination.Item>
         )
         for (let number = leftItem; number <= rightItem; number++) {
@@ -111,8 +102,8 @@ export default function History() {
                 break
         }
         items.push(
-            <Pagination.Item key="after" >
-                    <AiOutlineRight />
+            <Pagination.Item key="after" onClick={()=> {handlePage(pageTotal)}}>
+                    <AiOutlineDoubleRight />
             </Pagination.Item>
         )
     }
