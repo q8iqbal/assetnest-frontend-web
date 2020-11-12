@@ -4,9 +4,11 @@ import AssetInfo from './asset-info/AssetInfo';
 import AssetAttachment from './asset-attachment/AssetAttachment';
 import axios from 'axios';
 import {BASE_URL, GET_ASSET } from '../../../constants/urls';
+import { getCookie } from '../../../utils/auth';
 
-export default function AssetDetail() {
-  const id = 1;
+export default function AssetDetail(props) {
+  const id = props.location.state;
+  axios.defaults.headers.common['Authorization'] = 'Bearer'+getCookie();
   const [asset, setAsset] = useState({});
   const [attachment, setAttachment] = useState([]);
   const GET_ATTACHMENT = `${GET_ASSET + id}/attachment`
@@ -15,6 +17,7 @@ export default function AssetDetail() {
     axios.get(GET_ASSET + id)
     .then((response) => {
       setAsset(response.data.data);
+      console.log(response.data.data);
 
       axios.get(GET_ATTACHMENT)
       .then((response) => {
