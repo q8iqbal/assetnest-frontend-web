@@ -42,13 +42,13 @@ export default function Login() {
             login(response.data)
 
             //get company data
-            axios.get(GET_COMPANY)
+            axios.get(GET_COMPANY,{headers : {'Authorization' : 'Bearer'+response.data.token}})
             .then(response => {
                 setCompany(response.data.data)
+                //change to dashboard
+                history.push("/home/")
             })
             
-            //change to dashboard
-            history.push("/home/")
         })
         .catch(errors => {
             setShow(true) // show error can't login

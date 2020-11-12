@@ -40,8 +40,6 @@ export default function Sidebar(props) {
     const handleProfile = () => {
         setSidebarItem([false, false, false])
     }
-
-    console.log(props)
     
 
     return (
@@ -58,7 +56,7 @@ export default function Sidebar(props) {
             </div>
 
             <div className="page-wrapper">
-                <Navbar bg="primary" variant="dark" className="" style={{minHeight:"10%"}}>
+                <Navbar bg="primary" variant="dark" className="">
                     <Button onClick={handleCLick} className="button-sidebar"><FaBars/></Button>
                     <Navbar.Brand className="ml-2 navbar-font"> {props.companyName} </Navbar.Brand>
                         <Dropdown className="ml-auto">
@@ -67,7 +65,7 @@ export default function Sidebar(props) {
                                 <span className="d-none d-md-inline button-text"> {props.userName} </span>
                             </Dropdown.Toggle>
 
-                            <Dropdown.Menu >
+                            <Dropdown.Menu align="left">
                                 <Dropdown.Item onClick={handleProfile}><Link to="/home/profile" className="text-decoration-none text-dark">Profile</Link></Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item onClick={handleSignOut}>Sign Out</Dropdown.Item>

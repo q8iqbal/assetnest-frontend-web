@@ -1,4 +1,3 @@
-import axios from 'axios'
 import Cookie from 'js-cookie'
 
 const USER = "USER"
@@ -11,7 +10,6 @@ export const login = (data) => {
     // document.cookie = "token="+data.token+"; expires="+new Date(Date.now() + data.expires_in*100).toUTCString()
     const expiresDate = new Date(Date.now() + data.expires_in*1000)
     Cookie.set(TOKEN, data.token, { expires: expiresDate})
-    axios.defaults.headers.common['Authorization'] = 'Bearer'+data.token
 }; 
 
 export const logout = () => {
@@ -25,6 +23,10 @@ export const isLogin = () => {
         return true;
     }
     return false;
+};
+
+export const getCookie = () => {
+    return Cookie.get(TOKEN)
 };
 
 export const setUser = user => {

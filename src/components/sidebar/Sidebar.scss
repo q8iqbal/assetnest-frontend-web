@@ -33,6 +33,10 @@
         font-weight: 600;
     }
 
+    .navbar{
+        min-height: 10%;
+    }
+
     @media only screen and (max-width: 768px){
         .sidebar-wrapper{
             -webkit-transition: margin .25s ease-out;
@@ -52,6 +56,10 @@
     
         .showed{
             margin-left: 0rem;
+        }
+
+        .navbar{
+            min-height: 8%;
         }
     }
 }
