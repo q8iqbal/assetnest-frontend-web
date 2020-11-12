@@ -56,7 +56,7 @@ export default function Sidebar(props) {
             </div>
 
             <div className="page-wrapper" style={{height:"100vh"}}>
-                <Navbar bg="primary" variant="dark" className="" sticky="top">
+                <Navbar bg="primary" variant="dark" className="" sticky="top" style={{height:"10%"}}>
                     <Button onClick={handleCLick} className="button-sidebar"><FaBars/></Button>
                     <Navbar.Brand className="ml-2 navbar-font"> {props.companyName} </Navbar.Brand>
                         <Dropdown className="ml-auto">
@@ -72,7 +72,7 @@ export default function Sidebar(props) {
                             </Dropdown.Menu>
                         </Dropdown>
                 </Navbar>
-                <div id="page-content" className="d-flex h-100" style={{backgroundColor:"#f9f9f9"}}>
+                <div id="page-content" className="d-flex" style={{backgroundColor:"#f9f9f9", height:"90%"}}>
                     {props.children}
                 </div>
             </div>
