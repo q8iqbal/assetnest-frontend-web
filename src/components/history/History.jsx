@@ -4,18 +4,20 @@ import DatePicker,{ registerLocale } from  "react-datepicker";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { IoMdTrash } from "react-icons/io";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-import { GET_HISTORY } from '../../constants/urls'
+import { GET_HISTORY, DEL_HISTORY } from '../../constants/urls'
 import { getCookie } from '../../utils/auth'
 import axios from 'axios'
 import id from 'date-fns/locale/es';
 import './History.scss'
+import { number } from 'yup';
 registerLocale('id', id)
 
 export default function History() {
     axios.defaults.headers.common['Authorization'] = 'Bearer'+getCookie()
     const [loading , setLoading] = useState(true)
-    const [startDate, setStartDate] = useState()
+    const [startDate, setStartDate] = useState(new Date(Date.now() - 1000* 60 * 60 * 24 * 30 * 12))
     const [endDate, setEndDate] = useState(new Date())
+    const [page, setPage] = useState(1)
     const [histories, setHistories] = useState()
     const [response, setResponse] = useState()
     const [show, setShow] = useState(false);
@@ -23,6 +25,7 @@ export default function History() {
     const [sortAsset, setSortAsset] = useState('')
     const [sortCode, setSortCode] = useState('')
     const [sortDate, setSortDate] = useState('')
+    const [id , setId] = useState()
 
     const ExampleCustomInput = ({ value, onClick , placeholder}) => (
         <Button variant="white" className="border" onClick={onClick} >
@@ -30,18 +33,49 @@ export default function History() {
         </Button>
     );
 
+    const handleClose = () => setShow(false)
+    const handleShow = (id) => {
+        setId(id)
+        setShow(true)
+    }
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleDelete = () => {
+        console.log(id)
+        axios.delete(`${DEL_HISTORY}/${id}`)
+        .then(function (response) {
+            setSortDate(sortDate)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+        .then(()=>{
+            setShow(false)
+        })
+    }
 
+    const handlePage = number => {
+        setPage(number)
+    }
+
+    const handleNextPage = number => {
+
+    }
+
+    const handlePrevPage = number => {
+        
+    }
+
+    // console.log(date.toISOString())
     useEffect(()=>{
         setLoading(true)
-        axios.get(GET_HISTORY, {
+        axios.get(GET_HISTORY+`?filter[between]=${startDate.toISOString().slice(0, 19).replace('T', ' ')},${endDate.toISOString().slice(0, 19).replace('T', ' ')}`, {
             params: {
-                sort: `${sortUser}user,${sortAsset}asset,${sortCode}code,${sortDate}date`
+                sort: `${sortUser}user,${sortAsset}asset,${sortCode}code,${sortDate}date`,
+                page: page
             }
         })
         .then(function (response) {
+            console.log(response.data)
             setHistories(response.data.data.data)
             setResponse(response.data.data)
         })
@@ -52,22 +86,29 @@ export default function History() {
         .then(()=>{
             setLoading(false)
         })
-    },[sortUser,sortAsset,sortCode,sortDate])
+    },[sortUser,sortAsset,sortCode,sortDate,show,startDate,endDate,page])
 
     let items = [];
     if(!loading){
-        let active = response.current_page
+        console.log(response)
+        const active = response.current_page
+        const pageNeighbour = 2
+        const pageTotal = response.last_page
+        const leftItem = (active-pageNeighbour) <= 0 ? 1 : (active-pageNeighbour)
+        const rightItem = (active+pageNeighbour) > pageTotal ? pageTotal : (active+pageNeighbour)
         items.push(
             <Pagination.Item key="before">
                     <AiOutlineLeft />
             </Pagination.Item>
         )
-        for (let number = 1; number <= response.last_page; number++) {
+        for (let number = leftItem; number <= rightItem; number++) {
             items.push(
-                <Pagination.Item key={number} >
-                    <span className={number===active? "text-primary" : "text-dark"}>{number}</span>
+                <Pagination.Item key={number} onClick={handlePage.bind(this,number)}>
+                    <span className={number===active? "text-primary" : "text-dark"} >{number}</span>
                 </Pagination.Item>,
             );
+            if(number >= 10)
+                break
         }
         items.push(
             <Pagination.Item key="after" >
@@ -88,7 +129,7 @@ export default function History() {
                 <Button variant="secondary" onClick={handleClose}>
                     Nope
                 </Button>
-                <Button variant="primary" onClick={handleClose}>
+                <Button variant="primary" onClick={handleDelete}>
                     Yes
                 </Button>
                 </Modal.Footer>
@@ -114,8 +155,8 @@ export default function History() {
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Staff</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={()=>{setSortUser('')}}>Ascending</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{setSortUser('-')}}>Descending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortUser('')}} className={sortUser===''?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortUser('-')}} className={sortUser==='-'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -124,18 +165,17 @@ export default function History() {
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Asset Name</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={()=>{setSortAsset('')}}>Ascending</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{setSortAsset('-')}}>Descending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortAsset('')}} className={sortAsset===''?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortAsset('-')}} className={sortAsset==='-'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
                 <Col md={2}>
                     <Dropdown>
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Asset ID</Dropdown.Toggle>
-
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={()=>{setSortCode('')}}>Ascending</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{setSortCode('-')}}>Descending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortCode('')}} className={sortCode===''?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortCode('-')}} className={sortCode==='-'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -143,10 +183,9 @@ export default function History() {
                 <Col md={3}>
                     <Dropdown>
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Date</Dropdown.Toggle>
-
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={()=>{setSortDate('')}}>Ascending</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{setSortDate('-')}}>Descending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortDate('')}} className={sortDate===''?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortDate('-')}} className={sortDate==='-'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -172,7 +211,6 @@ export default function History() {
                         </Row>
                     ):(
                         histories.map(value => {
-                            console.log(new Date(value.date))
                             return (
                                 <Row className="content-section bg-white rounded mt-3 shadow"  style={{marginRight:0, marginLeft:0, alignItems:"center"}} md={6} xs={3}>
                                     <Col md={2}>{value.user}</Col>
@@ -181,7 +219,7 @@ export default function History() {
                                     <Col md={2}>{value.status}</Col>
                                     <Col md={3}>{value.date}</Col>
                                     <Col md={1} className="d-flex align-items-center justify-content-end">
-                                        <Button variant="danger" className="px-2" value={value.id} style={{backgroundColor:"#fc646c"}} onClick={()=>{handleShow()}}>
+                                        <Button variant="danger" className="px-2" value={value.id} style={{backgroundColor:"#fc646c"}} onClick={handleShow.bind(this,value.id)}>
                                             <IoMdTrash height="10rem"/>
                                         </Button>
                                     </Col>
