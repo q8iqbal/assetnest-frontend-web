@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Dropdown, Row , Col , Button, Pagination, Spinner, Alert} from "react-bootstrap"
+import { Dropdown, Row , Col , Button, Pagination, Spinner} from "react-bootstrap"
 import DatePicker,{ registerLocale } from  "react-datepicker";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { IoMdTrash } from "react-icons/io";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import { GET_HISTORY } from '../../constants/urls'
 import { getCookie } from '../../utils/auth'
@@ -16,6 +17,7 @@ export default function History() {
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState(new Date())
     const [histories, setHistories] = useState()
+    const [response, setResponse] = useState()
     const ExampleCustomInput = ({ value, onClick , placeholder}) => (
         <Button variant="white" className="border" onClick={onClick} >
             {value === "" ? placeholder : value}
@@ -23,9 +25,11 @@ export default function History() {
     );
 
     useEffect(()=>{
+        setLoading(true)
         axios.get(GET_HISTORY)
         .then(function (response) {
             setHistories(response.data.data.data)
+            setResponse(response.data.data)
         })
         .catch(function (error) {
             console.log(error);
@@ -36,41 +40,36 @@ export default function History() {
         })
     },[])
 
-    let active = 2;
+    console.log(response)
     let items = [];
-    items.push(
-        <Pagination.Item key="before">
-                <AiOutlineLeft />
-        </Pagination.Item>
-    )
-    for (let number = 1; number <= 5; number++) {
+    if(!loading){
+        let active = response.current_page
         items.push(
-            <Pagination.Item key={number} >
-                <span className={number===active? "text-primary" : "text-dark"}>{number}</span>
-            </Pagination.Item>,
-        );
+            <Pagination.Item key="before">
+                    <AiOutlineLeft />
+            </Pagination.Item>
+        )
+        for (let number = 1; number <= response.last_page; number++) {
+            items.push(
+                <Pagination.Item key={number} >
+                    <span className={number===active? "text-primary" : "text-dark"}>{number}</span>
+                </Pagination.Item>,
+            );
+        }
+        items.push(
+            <Pagination.Item key="after" >
+                    <AiOutlineRight />
+            </Pagination.Item>
+        )
     }
-    items.push(
-        <Pagination.Item key="after" >
-                <AiOutlineRight />
-        </Pagination.Item>
-    )
-
 
     return (
-        <div className="history-page w-100 px-5 py-2 mt-5">
+        <div className="history-page w-100 px-md-5 px-2 py-2 mt-5">
             
             {/* header function */}
             <Row className="head-section"  style={{marginRight:0, marginLeft:0, alignItems:"center"}} xs={1} md={2}>
                 <Col className="d-flex align-items-center" >
-                    <h2 style={{textDecoration:"underline", textDecorationColor:"#ff7b4b"}}>All Histories</h2>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="" className="text-muted">Filter By</Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                            <Dropdown.Item ></Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    <h2 className="text-primary">All Histories</h2>
                 </Col>
 
                 <Col className="d-flex align-items-center justify-content-end">
@@ -87,16 +86,22 @@ export default function History() {
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Staff</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item ></Dropdown.Item>
+                            <Dropdown.Item >Ascending</Dropdown.Item>
+                            <Dropdown.Item >Descending</Dropdown.Item>
+                            <Dropdown.Divider/>
+                            <Dropdown.Item >None</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
-                <Col md={4}>
+                <Col md={2}>
                     <Dropdown>
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Asset Name</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item ></Dropdown.Item>
+                            <Dropdown.Item >Ascending</Dropdown.Item>
+                            <Dropdown.Item >Descending</Dropdown.Item>
+                            <Dropdown.Divider/>
+                            <Dropdown.Item >None</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -105,17 +110,23 @@ export default function History() {
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Asset ID</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item ></Dropdown.Item>
+                            <Dropdown.Item >Ascending</Dropdown.Item>
+                            <Dropdown.Item >Descending</Dropdown.Item>
+                            <Dropdown.Divider/>
+                            <Dropdown.Item >None</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
-                <Col md={1}>Status</Col>
-                <Col md={2}>
+                <Col md={2}>Status</Col>
+                <Col md={3}>
                     <Dropdown>
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Date</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item ></Dropdown.Item>
+                            <Dropdown.Item >Ascending</Dropdown.Item>
+                            <Dropdown.Item >Descending</Dropdown.Item>
+                            <Dropdown.Divider/>
+                            <Dropdown.Item >None</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -136,37 +147,33 @@ export default function History() {
                     </Row>
                 ) : (
                     histories===null? (
-                        <Row className="content-section bg-white rounded mt-3 shadow"  style={{marginRight:0, marginLeft:0, alignItems:"center",  height:"3rem"}} md={6} xs={3}>
+                        <Row className="content-section bg-white rounded mt-3 shadow"  style={{marginRight:0, marginLeft:0, alignItems:"center"}} md={6} xs={3}>
                             Empty
                         </Row>
                     ):(
                         histories.map(value => {
                             return (
-                                <Row className="content-section bg-white rounded mt-3 shadow"  style={{marginRight:0, marginLeft:0, alignItems:"center",  height:"3rem"}} md={6} xs={3}>
-                                    <Col md={2}>1</Col>
-                                    <Col md={4}>2</Col>
-                                    <Col md={2}>3</Col>
-                                    <Col md={1}>4</Col>
-                                    <Col md={2}>5</Col>
-                                    <Col md={1} className="d-flex align-items-center justify-content-end">6</Col>
+                                <Row className="content-section bg-white rounded mt-3 shadow"  style={{marginRight:0, marginLeft:0, alignItems:"center"}} md={6} xs={3}>
+                                    <Col md={2}>{value.user}</Col>
+                                    <Col md={2}>{value.asset}</Col>
+                                    <Col md={2}>{value.code}</Col>
+                                    <Col md={2}>{value.status}</Col>
+                                    <Col md={3}>{value.date}</Col>
+                                    <Col md={1} className="d-flex align-items-center justify-content-end">
+                                        <Button variant="danger" className="px-2" value={value.id} style={{backgroundColor:"#fc646c"}}>
+                                            <IoMdTrash height="10rem"/>
+                                        </Button>
+                                    </Col>
                                 </Row>
                             )
                         })
                     )
                 )
             }
-            <Row className="content-section bg-white rounded mt-3 shadow"  style={{marginRight:0, marginLeft:0, alignItems:"center",  height:"3rem"}} md={6} xs={3}>
-                <Col md={2}>1</Col>
-                <Col md={4}>2</Col>
-                <Col md={2}>3</Col>
-                <Col md={1}>4</Col>
-                <Col md={2}>5</Col>
-                <Col md={1} className="d-flex align-items-center justify-content-end">6</Col>
-            </Row>
 
             {/* footer table */}
             <div className=" footer-section mt-4">
-                <p className="float-left">Showing 09-15 of 128 Assets</p>
+                {!loading? ( <p className="float-left">Showing {response.from+"-"+response.to} of {response.total} Assets</p> ): ""}
                 <Pagination className="border-none float-right">{items}</Pagination>
             </div>
         </div>
