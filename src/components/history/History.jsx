@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Dropdown, Row , Col , Button, Pagination, Spinner} from "react-bootstrap"
+import { Dropdown, Row , Col , Button, Pagination, Spinner, Modal} from "react-bootstrap"
 import DatePicker,{ registerLocale } from  "react-datepicker";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { IoMdTrash } from "react-icons/io";
@@ -15,14 +15,20 @@ export default function History() {
     axios.defaults.headers.common['Authorization'] = 'Bearer'+getCookie()
     const [loading , setLoading] = useState(true)
     const [startDate, setStartDate] = useState()
-    const [endDate, setEndDate] = useState(new Date())
+    const [endDate, setEndDate] = useState()
     const [histories, setHistories] = useState()
     const [response, setResponse] = useState()
+    const [show, setShow] = useState(false);
+
     const ExampleCustomInput = ({ value, onClick , placeholder}) => (
         <Button variant="white" className="border" onClick={onClick} >
             {value === "" ? placeholder : value}
         </Button>
     );
+
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(()=>{
         setLoading(true)
@@ -40,7 +46,6 @@ export default function History() {
         })
     },[])
 
-    console.log(response)
     let items = [];
     if(!loading){
         let active = response.current_page
@@ -66,6 +71,21 @@ export default function History() {
     return (
         <div className="history-page w-100 px-md-5 px-2 py-2 mt-5">
             
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Be Careful</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Woohoo, Are you sure to delete this thing</Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Nope
+                </Button>
+                <Button variant="primary" onClick={handleClose}>
+                    Yes
+                </Button>
+                </Modal.Footer>
+            </Modal>
+
             {/* header function */}
             <Row className="head-section"  style={{marginRight:0, marginLeft:0, alignItems:"center"}} xs={1} md={2}>
                 <Col className="d-flex align-items-center" >
@@ -160,7 +180,7 @@ export default function History() {
                                     <Col md={2}>{value.status}</Col>
                                     <Col md={3}>{value.date}</Col>
                                     <Col md={1} className="d-flex align-items-center justify-content-end">
-                                        <Button variant="danger" className="px-2" value={value.id} style={{backgroundColor:"#fc646c"}}>
+                                        <Button variant="danger" className="px-2" value={value.id} style={{backgroundColor:"#fc646c"}} onClick={()=>{handleShow()}}>
                                             <IoMdTrash height="10rem"/>
                                         </Button>
                                     </Col>
