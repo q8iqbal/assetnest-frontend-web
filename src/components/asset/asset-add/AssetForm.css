@@ -34,7 +34,7 @@
 }
 
 .AssetForm_attachments .AssetForm_form-file {
-    width: 75% !important;
+    width: 65% !important;
 }
 
 .AssetForm_attachments {
@@ -50,7 +50,7 @@
 }
 
 .AssetForm {
-    padding: 3rem 2rem;
+    padding: 3rem 3rem 0 2rem;
     font-family: Montserrat;
     font-weight: 550;
     font-size: 1rem;
@@ -67,27 +67,27 @@
 
 @media (min-width: 576px) and (max-width: 767.98px) {
     .AddAssetForm {
-        width: 90%;
+        width: 100%;
     }
     .AssetForm_attachments .AssetForm_form-file {
         width: 65% !important;
     }
 }
 
-@media (min-width: 768x) and (max-width: 991.98px) {
+@media (min-width: 768px) and (max-width: 991.98px) {
     .AddAssetForm {
-        width: 80%;
+        width: 95%;
     }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .AddAssetForm {
-        width: 70%;
+        width: 95%;
     }
 }
 
 @media (min-width: 1200px) {
     .AddAssetForm {
-        width: 60%;
+        width: 90%;
     }
 }
