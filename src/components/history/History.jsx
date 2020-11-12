@@ -15,10 +15,14 @@ export default function History() {
     axios.defaults.headers.common['Authorization'] = 'Bearer'+getCookie()
     const [loading , setLoading] = useState(true)
     const [startDate, setStartDate] = useState()
-    const [endDate, setEndDate] = useState()
+    const [endDate, setEndDate] = useState(new Date())
     const [histories, setHistories] = useState()
     const [response, setResponse] = useState()
     const [show, setShow] = useState(false);
+    const [sortUser, setSortUser] = useState('')
+    const [sortAsset, setSortAsset] = useState('')
+    const [sortCode, setSortCode] = useState('')
+    const [sortDate, setSortDate] = useState('')
 
     const ExampleCustomInput = ({ value, onClick , placeholder}) => (
         <Button variant="white" className="border" onClick={onClick} >
@@ -32,7 +36,11 @@ export default function History() {
 
     useEffect(()=>{
         setLoading(true)
-        axios.get(GET_HISTORY)
+        axios.get(GET_HISTORY, {
+            params: {
+                sort: `${sortUser}user,${sortAsset}asset,${sortCode}code,${sortDate}date`
+            }
+        })
         .then(function (response) {
             setHistories(response.data.data.data)
             setResponse(response.data.data)
@@ -44,7 +52,7 @@ export default function History() {
         .then(()=>{
             setLoading(false)
         })
-    },[])
+    },[sortUser,sortAsset,sortCode,sortDate])
 
     let items = [];
     if(!loading){
@@ -102,14 +110,12 @@ export default function History() {
             {/* header table */}
             <Row className="content-header text-white font-weight-bold rounded mt-2" style={{marginRight:0, marginLeft:0, alignItems:"center", backgroundColor:"grey"}} md={6} xs={3}>
                 <Col md={2}>
-                    <Dropdown>
+                    <Dropdown >
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Staff</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item >Ascending</Dropdown.Item>
-                            <Dropdown.Item >Descending</Dropdown.Item>
-                            <Dropdown.Divider/>
-                            <Dropdown.Item >None</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortUser('')}}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortUser('-')}}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -118,10 +124,8 @@ export default function History() {
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Asset Name</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item >Ascending</Dropdown.Item>
-                            <Dropdown.Item >Descending</Dropdown.Item>
-                            <Dropdown.Divider/>
-                            <Dropdown.Item >None</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortAsset('')}}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortAsset('-')}}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -130,10 +134,8 @@ export default function History() {
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Asset ID</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item >Ascending</Dropdown.Item>
-                            <Dropdown.Item >Descending</Dropdown.Item>
-                            <Dropdown.Divider/>
-                            <Dropdown.Item >None</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortCode('')}}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortCode('-')}}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -143,10 +145,8 @@ export default function History() {
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Date</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item >Ascending</Dropdown.Item>
-                            <Dropdown.Item >Descending</Dropdown.Item>
-                            <Dropdown.Divider/>
-                            <Dropdown.Item >None</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortDate('')}}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortDate('-')}}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -172,6 +172,7 @@ export default function History() {
                         </Row>
                     ):(
                         histories.map(value => {
+                            console.log(new Date(value.date))
                             return (
                                 <Row className="content-section bg-white rounded mt-3 shadow"  style={{marginRight:0, marginLeft:0, alignItems:"center"}} md={6} xs={3}>
                                     <Col md={2}>{value.user}</Col>
