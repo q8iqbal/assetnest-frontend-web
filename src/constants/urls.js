@@ -9,3 +9,4 @@ export const GET_COMPANY = `${BASE_URL}/companies`
 
 //histories
 export const GET_HISTORY = `${BASE_URL}/histories`
+export const DEL_HISTORY = `${BASE_URL}/histories`
