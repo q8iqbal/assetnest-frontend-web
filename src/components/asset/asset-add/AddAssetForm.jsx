@@ -4,8 +4,9 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 import * as Yup from 'yup';
 import './AssetForm.css';
 import axios from 'axios';
-import { POST_ASSET } from '../../../../constants/urls';
+import { GET_ASSET, POST_ASSET_IMAGE } from '../../../constants/urls';
 import FieldControl from '../asset-form/FieldControl';
+import { getCookie } from '../../../utils/auth'
 
 const getCurrentDateString = () => {
     let currentDate = new Date();
@@ -29,20 +30,21 @@ const initialValues = {
     note: '' 
 };
 
-const onSubmit = values => {
-    let jsonConfig = {
-        headers: {
-            "Content-Type": "application/json",
-            // "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvbG9naW4iLCJpYXQiOjE2MDQ2OTc1MzAsImV4cCI6MTYwNDcwMTEzMCwibmJmIjoxNjA0Njk3NTMwLCJqdGkiOiJuR25XeGJDa2RKVFM3bXJQIiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.V8JQe4gSi7moLRcEJFIZmRU5zhgQh4LWYi2qdzWoyzI"
-        }
-    };
-
-    let multipartConfig = {
-        headers: {
-            "Content-Type": "multipart/form-data"
-        }
+const jsonConfig = {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${getCookie()}`
     }
-        
+};
+
+const formDataConfig = {
+    headers: {
+        "Content-Type": "multipart/form-data",
+        "Authorization": `Bearer ${getCookie()}`
+    }
+}
+
+const onSubmit = values => {
     let assetData = {
         "asset": {
             "code": values.code,
@@ -55,38 +57,47 @@ const onSubmit = values => {
         }
     };
 
-    let assetImageData = values.image;
-    let attachmentData = values.fileAttachments.filter(function(el) { return el; });
-    // let imageFormData = new FormData();
-    
-    // formData.append("image", assetImageData);
+    let attachmentData = values.fileAttachments.filter(attachment => attachment);
+    let formData = new FormData();
+    formData.append("image", values.image);
 
+    axios.post(`${GET_ASSET}image`, formData, formDataConfig)
+        .then(postAssetImage_response => {
+            console.log(postAssetImage_response);
 
-    // axios.post(POST_LOGIN, loginData, jsonConfig)
-    //     .then(login_response => {
-    //         console.log(login_response);
-
-    //         return login_response
-    //     }).then(login_response => {
-    //         jsonConfig = {
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 "Athorization": `${login_response.token_type} ${login_response.token}`
-    //             }
+            if (!!postAssetImage_response.data.data) {
+                assetData.asset.image = postAssetImage_response.data.data.path;
+            }
+            axios.post(GET_ASSET, assetData, jsonConfig)
+                .then(postasset_response => {
+                    console.log(postasset_response);
             
-    //         }
-    //         axios.post(POST_ASSET, assetData, jsonConfig)
-    //             .then(postasset_response => {console.log(postasset_response))
-    //     })
-    axios.post(POST_ASSET, assetData, jsonConfig)
-        .then(postasset_response => {
-            console.log(postasset_response);
-        })
-        .catch(errors => {
-            console.log(errors);
-        });
+                    const assetId = postasset_response.data.data.id;
+                    const POST_ATTACHMENT = `${GET_ASSET}${assetId}/attachment`;
 
-    console.log(assetData, assetImageData, attachmentData);
+                    attachmentData.forEach(attachment => {
+                        let formData = new FormData();
+
+                        formData.append("file", attachment);
+                        axios.post(POST_ATTACHMENT, formData, formDataConfig)
+                            .then(postattachment_response => {
+                                console.log(postattachment_response);
+                            })
+                            .catch(postattachment_errors => {
+                                console.log(postattachment_errors)
+                            });
+                    });
+                })
+                .catch(postasset_errors => {
+                    console.log(postasset_errors);
+                });
+        })
+        .catch(postAssetImage_errors => {
+            console.log(postAssetImage_errors);
+        })
+    
+    console.log("assetData : ", assetData);
+    console.log("attachmentData : ", attachmentData);
 };
 
 const validationSchema = Yup.object({
@@ -105,7 +116,21 @@ const validationSchema = Yup.object({
         .number()
         .required("Required!")
         .positive("Price should be positive values!"),
-    image: Yup.mixed().nullable().notRequired(),
+    image: Yup.mixed()
+        .test("is-correct-file", "Photo should be type of image file!", (file?: File) => {
+            let valid = true;
+            if (!!file) {
+                if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
+                    valid = false;
+                }
+                console.log("file : ", file);
+            }
+            console.log("!!file : ", !!file, "file : ", file);
+            console.log("image valid : ", valid);
+            return valid;
+        })
+        .nullable()
+        .notRequired(),
     fileAttachments: Yup.mixed().nullable().notRequired(),
     note: Yup.string().nullable().notRequired()
 });
