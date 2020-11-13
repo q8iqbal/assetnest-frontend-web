@@ -25,7 +25,11 @@ function Profile(props) {
             <h1><span className="text-primary">{user.role}</span> | {user.name}</h1>
             {
                 user.image == null ? (
+<<<<<<< HEAD
                     <img src={PorfileImage} className="rounded-circle profile-image float-left mr-3" alt="icon admin"/>
+=======
+                    <img src={BASE_URL + user.image} className="rounded-circle profile-image float-left mr-3" alt="icon admin"/>
+>>>>>>> dev-nawa-2
                 ) : (
                     <img src={BASE_URL + user.image} className="rounded-circle profile-image float-left mr-3" alt="icon admin"/>
                 )
