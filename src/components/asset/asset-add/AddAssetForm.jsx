@@ -157,10 +157,12 @@ function AddAssetForm() {
 
     const typeOptions = [
         { value: '', key: '- Type -'},
-        { value: 'elektronik', key: 'Electronics' },
-        { value: 'kendaraan', key: 'Vehicles' },
-        { value: 'dokumen', key: 'Documents'},
-        { value: 'lain-lain', key: 'Others'}
+        { value: 'Desktop', key: 'Desktop' },
+        { value: 'Vehicle', key: 'Vehicle' },
+        { value: 'Machine', key: 'Machine'},
+        { value: 'Accessories', key: 'Accessories'},
+        { value: 'Document', key: 'Document'},
+        { value: 'Etc', key: 'Etc'}
     ];
 
     return (<div className="AssetForm">
