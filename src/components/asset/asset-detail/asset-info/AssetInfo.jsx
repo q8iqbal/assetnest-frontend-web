@@ -1,8 +1,21 @@
 import React from 'react';
 import './AssetInfo.scss';
 import {Table, Card, Button} from 'react-bootstrap';
+import {BASE_URL, GET_ASSET } from '../../../../constants/urls';
+import axios from 'axios';
+import { Link, useLocation , useHistory} from "react-router-dom"
 
 export default function AssetInfo(props){
+    const id = props.asset.id;
+    const history = useHistory();
+
+    const handleDelete = () => {
+        axios.delete(`${GET_ASSET}${id}`)
+        .then(
+            history.push('/home/asset')
+        )
+    }
+
     return(
         <div className="asset-info">
             <Card>
@@ -36,8 +49,7 @@ export default function AssetInfo(props){
                         <p className="col-md-8">{props.asset.note}</p>
                     </div>
                     <div className="float-right">
-                        <Button variant="danger" className="mr-2">Delete</Button>
-                        <Button variant="success">Edit</Button>
+                        <Button variant="danger" className="mr-2" onClick={handleDelete}>Delete</Button>
                     </div>
                 </Card.Body>
             </Card>

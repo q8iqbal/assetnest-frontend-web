@@ -6,6 +6,7 @@ import { getCookie } from '../../utils/auth'
 import axios from 'axios'
 import './Profile.scss'
 import {BASE_URL} from '../../constants/urls'
+import PorfileImage from '../../assets/icons/profile.png'
 
 function Profile(props) {
     // console.log(JSON.parse(localStorage.getItem("USER")));
@@ -24,7 +25,7 @@ function Profile(props) {
             <h1><span className="text-primary">{user.role}</span> | {user.name}</h1>
             {
                 user.image == null ? (
-                    <img src={BASE_URL + user.image} className="rounded-circle profile-image float-left mr-3" alt="icon admin"/>
+                    <img src={PorfileImage} className="rounded-circle profile-image float-left mr-3" alt="icon admin"/>
                 ) : (
                     <img src={BASE_URL + user.image} className="rounded-circle profile-image float-left mr-3" alt="icon admin"/>
                 )

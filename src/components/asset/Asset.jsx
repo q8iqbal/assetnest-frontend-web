@@ -23,8 +23,8 @@ export default function AssetList(){
 
     return(
         <div>
-            <h4 className="d-inline-block detail-option px-1 mr-2">All Assets</h4>
-            <h4 className="d-inline-block detail-option disabled">Filter By</h4>
+            <h4 className="d-inline-block text-primary px-1 mr-2">All Assets</h4>
+            {/* <h4 className="d-inline-block detail-option disabled">Filter By</h4> */}
             <Form className="d-inline-block form-inline float-right">
                 <Form.Control
                     className="mr-2"
@@ -60,9 +60,6 @@ export default function AssetList(){
                             <td className="align-middle">
                                 <Button type="submit" className="btn-sm btn-danger mr-1">
                                     <img src={del} alt=""/>
-                                </Button>
-                                <Button type="submit" className="btn-sm btn-success">
-                                    <img src={edit} alt=""/>
                                 </Button>
                             </td>
                         </tr>

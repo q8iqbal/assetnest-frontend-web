@@ -5,6 +5,7 @@ import AssetAttachment from './asset-attachment/AssetAttachment';
 import axios from 'axios';
 import {BASE_URL, GET_ASSET } from '../../../constants/urls';
 import { getCookie } from '../../../utils/auth';
+import Image from '../../../assets/icons/image.jpg';
 
 export default function AssetDetail(props) {
   const id = props.location.state;
@@ -33,15 +34,21 @@ export default function AssetDetail(props) {
         <div className="main col-md-5">
             <h3><span className="text-primary">#</span>{asset.code}</h3>
             <h3>{asset.name}</h3>
-            <img src={BASE_URL + asset.image} className="rounded mb-3 img-fluid w-100"/>
+            {
+              asset.image == null ? (
+                <img src={Image} className="rounded mb-3 img-fluid w-100"/>
+              ) : (
+                <img src={BASE_URL + asset.image} className="rounded mb-3 img-fluid w-100"/>
+              )
+            }
             <h4 className="text-primary">Files Attachment</h4>
             {attachment.map(attachment => 
               <AssetAttachment key={attachment.id} attachment={attachment}/>
             )}
         </div>
         <div className="fragment col-md-7 mt-5">
-            <h4 className="d-inline-block detail-option px-1 mr-2">Asset Info</h4>
-            <h4 className="d-inline-block detail-option disabled">Asset History</h4>
+            <h4 className="d-inline-block text-primary px-1 mr-2">Asset Info</h4>
+            {/* <h4 className="d-inline-block detail-option disabled">Asset History</h4> */}
             <AssetInfo asset={asset}/>
         </div>
     </div>

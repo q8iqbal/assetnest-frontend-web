@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Formik, FieldArray } from 'formik';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import * as Yup from 'yup';
@@ -13,6 +13,7 @@ function AddAssetForm() {
     const [showFailed, setShowFailed] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [assetId, setAssetId] = useState(undefined);
+    const history = useHistory();
 
     const getCurrentDateString = () => {
         let currentDate = new Date();
@@ -173,7 +174,11 @@ function AddAssetForm() {
             <Alert.Heading>Data Submitted Successfully!</Alert.Heading>
             <hr/>
             <div className="d-flex justify-content-end">
-                <Link to={`/home/asset/${assetId}`}>
+                <Link to={() => 
+                        history.push({
+                            pathname : 'show/'+assetId, 
+                            state : assetId
+                    })}>
                     <Button variant="outline-success">Go to asset detail</Button>
                 </Link>
             </div>

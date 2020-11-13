@@ -15,4 +15,5 @@ export const GET_ASSET_COUNT = `${BASE_URL}/assets/count`
 export const GET_HISTORY = `${BASE_URL}/histories`
 
 export const GET_ASSET = `${BASE_URL}/assets/`
+
 export const DEL_HISTORY = `${BASE_URL}/histories`
