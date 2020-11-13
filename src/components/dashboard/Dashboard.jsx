@@ -5,6 +5,7 @@ import { Row, Col, Card, Spinner } from "react-bootstrap"
 import { GET_ASSET_COUNT } from '../../constants/urls'
 import axios from 'axios'
 import './Dashboard.scss'
+import CompanyImage from '../../assets/icons/company.png'
 
 export default function Dashboard() {
     axios.defaults.headers.common['Authorization'] = 'Bearer'+getCookie()
@@ -35,7 +36,13 @@ export default function Dashboard() {
         <div className="dashboard-wrapper w-100">
             <Row className="mt-5 bg-white mx-2 rounded" lg={2} xs={1}>
                 <Col lg={4}>
-                    <img src={`${BASE_URL}${companyData.image}`} alt="logo" width="100%"/>
+                {
+                    companyData.image == null ? (
+                       <img src={CompanyImage} alt="logo" width="100%"/>
+                    ) : (
+                        <img src={`${BASE_URL}${companyData.image}`} alt="logo" width="100%"/>
+                    )
+                }
                 </Col>
                 <Col lg={8}>
                     <Row className="mt-4">

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400.089" height="96.099" viewBox="0 0 400.089 96.099">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: #3e4243;
+      }
+
+      .cls-1 {
+        font-size: 61px;
+        font-family: Gravity-Regular, Gravity;
+      }
+
+      .cls-2 {
+        fill: #ff7b4b;
+      }
+
+      .cls-3 {
+        font-size: 17px;
+        font-family: Montserrat-Medium, Montserrat;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+  <g id="Group_22" data-name="Group 22" transform="translate(55.736 -239.373)">
+    <text id="AssetNest" class="cls-1" transform="translate(198.353 299.373)"><tspan x="-145.79" y="0">Asset</tspan><tspan class="cls-2" y="0">Nest</tspan></text>
+    <path id="Path_2" data-name="Path 2" class="cls-2" d="M223.236,68.582l-2.513-1.454L213.5,62.957,211,61.518l-12.273-7.086,8.131-4.7-.073.124L236.115,66.8l1.724-2.98L210.16,47.828l9.482-5.472-1.724-2.981L179.653,61.467l-2.52,1.454-1.972,1.14V54.834l29.331-16.926-1.724-2.98L175.16,50.867V40h-3.448V89.373l-7.977-4.6V50.9h-3.448V82.777l-9.409-5.435-1.724,2.98,38.5,22.23,2.593,1.5,1.673.964-1.074.621-2.17,1.256-4.741,2.732L154.6,92.69l-1.724,2.98,27.607,15.947-9.409,5.428,1.724,2.981,18.3-10.564,2.593-1.5h.007l6.757-3.9h.007l2.6-1.505,12.492-7.21v9.226l-29.331,16.927,1.724,2.98,27.607-15.94v10.877h3.448v-49.3l.891.512,2.177,1.256,4.909,2.834v33.795h3.448V76.706l9.409,5.435,1.724-2.98ZM178.374,93.223l-3.215-1.856V68.034l3.215-1.856Zm17.065-36.892-.08.131,13.354,7.707.2.117V77.75l-25.291-14.6Zm-13.624,9.752,27.1,15.648v3.681l-27.1-15.648ZM202.051,99.17l-2.184,1.257-4.508,2.6-4.514-2.608-2.177-1.249-6.852-3.96V81.593L207.15,96.226Zm6.859-5.9-27.1-15.64V73.747l27.1,15.64Zm6.648-1.9-3.207,1.856V66.267l3.207,1.856Z" transform="translate(-204.889 204.446)"/>
+    <text id="easiest_asset_management_app" data-name="easiest asset management app" class="cls-3" transform="translate(53.349 321.7)"><tspan x="0" y="0">easiest asset management app</tspan></text>
+  </g>
+</svg>
