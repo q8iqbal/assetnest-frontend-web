@@ -56,6 +56,11 @@
     font-size: 1rem;
 }
 
+.AssetForm .alert-dismissible {
+    padding-right: 1rem !important;
+    margin-left: -0.3rem !important;
+}
+
 @media (max-width: 575.98px) {
     .AddAssetForm {
         width: 100%;
@@ -88,6 +93,6 @@
 
 @media (min-width: 1200px) {
     .AddAssetForm {
-        width: 90%;
+        width: 95%;
     }
 }
