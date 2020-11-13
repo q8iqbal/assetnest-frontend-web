@@ -1,6 +1,14 @@
 @import "./utils/variables";
 @import "~bootstrap/scss/bootstrap";
 
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
 #root{
-    height: 100vh;
+    display: flex;
+    height: 100%;
+    width: 100%;
 }

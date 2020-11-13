@@ -43,8 +43,8 @@ export default function Sidebar(props) {
     
 
     return (
-        <div className="d-flex wrapper">
-            <div className={"bg-light border-right sidebar-wrapper d-flex flex-column   " + (sidebar ? " showed" : " hidden")}>
+        <div className="d-flex wrapper w-100 h-100">
+            <div className={"bg-light border-right sidebar-wrapper d-lg-flex flex-column " + (sidebar ? " showed" : " hidden")}>
                 <Link to="/home">
                     <img src={Logo} alt="logo bambang" className="app-logo mb-3  mt-4 px-3 mx-auto" style={{width:"20em", height:"auto"}} />
                 </Link>
@@ -55,8 +55,8 @@ export default function Sidebar(props) {
                 </div>
             </div>
 
-            <div className="page-wrapper" style={{height:"100vh"}}>
-                <Navbar bg="primary" variant="dark" className="" sticky="top" style={{height:"10%"}}>
+            <div className="page-wrapper">
+                <Navbar bg="primary" variant="dark" className="" style={{height:"10%"}}>
                     <Button onClick={handleCLick} className="button-sidebar"><FaBars/></Button>
                     <Navbar.Brand className="ml-2 navbar-font"> {props.companyName} </Navbar.Brand>
                         <Dropdown className="ml-auto">

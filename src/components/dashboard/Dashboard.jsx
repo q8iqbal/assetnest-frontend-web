@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react'
-import {getCompany} from '../../utils/auth'
+import {getCompany,getCookie} from '../../utils/auth'
 import {BASE_URL} from '../../constants/urls'
 import { Row, Col, Card, Spinner } from "react-bootstrap"
 import { GET_ASSET_COUNT } from '../../constants/urls'
@@ -7,7 +7,8 @@ import axios from 'axios'
 import './Dashboard.scss'
 
 export default function Dashboard() {
-    const type = ['Desktop', 'Vehicle', 'Machine', 'Accessories', 'Document']
+    axios.defaults.headers.common['Authorization'] = 'Bearer'+getCookie()
+    const type = ['','Desktop', 'Vehicle', 'Machine', 'Accessories', 'Document','Etc']
     const companyData = getCompany()
     const [assetCount, setAssetCount] = useState(0)
     const [loading, setLoading] = useState(true)
@@ -16,18 +17,12 @@ export default function Dashboard() {
     let allCount = []
     useEffect(()=> {
         setLoading(true)
-        axios.get(GET_ASSET_COUNT)
-        .then(response=>{
-            console.log(response.data)
-            allCount.push(response.data.data)
-        })
 
         type.map((value)=>{
             axios.get(`${GET_ASSET_COUNT}?filter[type]=${value}`)
             .then(response=>{
-                console.log(response.data)
                 allCount.push(response.data.data)
-                if(allCount.length === 6){
+                if(allCount.length === type.length){
                     setAssetCount(allCount)
                     setLoading(false)
                 }
@@ -82,27 +77,16 @@ export default function Dashboard() {
                     </Col>
                 ):(<>
                 {
-                    <Row xs={1} md={2} lg={3} className="card-row ">
-                        <Col className="bg-white rounded" >
-                            <Card style={{height:"10rem"}}>
-                                <Card.Body>
-                                    <Card.Title>Total Assets</Card.Title>
-                                    <Card.Text className="text-primary text-right" style={{fontSize:"4.5rem", fontWeight:600}}>
-                                        {assetCount[0]}
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                    <Row xs={1} md={2} lg={3} className="card-row overflow-auto h-50 bg-white">
                     { 
                         type.map((value,idx)=>{
-                            console.log(assetCount)
                             return(
                                 <Col key={idx} className="bg-white rounded">
                                     <Card style={{height:"10rem"}}>
                                         <Card.Body>
-                                            <Card.Title> {value} </Card.Title>
+                                            <Card.Title> {value === ''? 'Total Assets' : value} </Card.Title>
                                             <Card.Text className="text-primary text-right" style={{fontSize:"4.5rem", fontWeight:600}}>
-                                                {assetCount[idx+1]}
+                                                {assetCount[idx]}
                                             </Card.Text>
                                         </Card.Body>
                                     </Card>
