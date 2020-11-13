@@ -23,7 +23,7 @@ export default function Dashboard() {
         })
 
         type.map((value)=>{
-            axios.get(`${GET_ASSET_COUNT}?filter[type]${value}`)
+            axios.get(`${GET_ASSET_COUNT}?filter[type]=${value}`)
             .then(response=>{
                 console.log(response.data)
                 allCount.push(response.data.data)
@@ -95,6 +95,7 @@ export default function Dashboard() {
                         </Col>
                     { 
                         type.map((value,idx)=>{
+                            console.log(assetCount)
                             return(
                                 <Col key={idx} className="bg-white rounded">
                                     <Card style={{height:"10rem"}}>
