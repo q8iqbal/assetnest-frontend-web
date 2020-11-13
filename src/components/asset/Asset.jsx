@@ -31,7 +31,7 @@ export default function AssetList(){
                     placeholder="Search Asset"
                     />
                 <Button type="submit" className="btn-primary">
-                    Add new Asset
+                    <Link to="/home/asset/add" className="putih">Add New Asset</Link>
                 </Button>
             </Form>
             <table className="table table-borderless table-hover">
@@ -49,7 +49,7 @@ export default function AssetList(){
                 { assets.map(item => (
                     <tr className="rounded" key={item.id} onClick={() => 
                         history.push({
-                            pathname : 'asset/'+item.id, 
+                            pathname : 'asset/show/'+item.id, 
                             state : item.id
                     })}>
                             <td className="align-middle">{item.code}</td>
