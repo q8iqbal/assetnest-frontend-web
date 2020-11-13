@@ -40,11 +40,14 @@ export default function Sidebar(props) {
     const handleProfile = () => {
         setSidebarItem([false, false, false])
     }
+    const handleNothing = ()=>{
+
+    }
     
 
     return (
-        <div className="d-flex wrapper w-100 h-100">
-            <div className={"bg-light border-right sidebar-wrapper d-lg-flex flex-column " + (sidebar ? " showed" : " hidden")}>
+        <div className="d-flex wrapper w-100 h-100" onClick={()=>{if(sidebar){handleCLick()}}} >
+            <div className={"bg-light border-right sidebar-wrapper d-lg-flex flex-column " + (sidebar ? " showed" : " hidden")} onClickCapture={handleCLick} >
                 <Link to="/home">
                     <img src={Logo} alt="logo bambang" className="app-logo mb-3  mt-4 px-3 mx-auto" style={{width:"20em", height:"auto"}} />
                 </Link>

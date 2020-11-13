@@ -14,6 +14,7 @@
 
     .sidebar-wrapper{
         width: 28rem;
+        height: 100%;  
     }
 
     .dropdown-menu{
@@ -36,7 +37,12 @@
             -moz-transition: margin .25s ease-out;
             -o-transition: margin .25s ease-out;
             transition: margin .25s ease-out;
-            width: 25rem;
+            width: 20rem;
+            position: fixed; 
+            z-index: 1; 
+            top: 0; 
+            left: 0;
+            overflow-x: hidden;
         }
 
         .button-sidebar{
@@ -44,7 +50,7 @@
         }
 
         .hidden{
-            margin-left: -25rem;
+            margin-left: -20rem;
         }
     
         .showed{
