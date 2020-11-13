@@ -20,10 +20,7 @@ export default function History() {
     const [histories, setHistories] = useState()
     const [response, setResponse] = useState()
     const [show, setShow] = useState(false);
-    const [sortUser, setSortUser] = useState('')
-    const [sortAsset, setSortAsset] = useState('')
-    const [sortCode, setSortCode] = useState('')
-    const [sortDate, setSortDate] = useState('')
+    const [sortBy , setSortBy] = useState('user')
     const [id , setId] = useState()
 
     const ExampleCustomInput = ({ value, onClick , placeholder}) => (
@@ -42,7 +39,7 @@ export default function History() {
         console.log(id)
         axios.delete(`${DEL_HISTORY}/${id}`)
         .then(function (response) {
-            setSortDate(sortDate)
+            setSortBy(sortBy)
         })
         .catch(function (error) {
             console.log(error);
@@ -60,7 +57,7 @@ export default function History() {
         setLoading(true)
         axios.get(GET_HISTORY+`?filter[between]=${startDate.toISOString().slice(0, 19).replace('T', ' ')},${endDate.toISOString().slice(0, 19).replace('T', ' ')}`, {
             params: {
-                sort: `${sortUser}user,${sortAsset}asset,${sortCode}code,${sortDate}date`,
+                sort: `${sortBy}`,
                 page: page
             }
         })
@@ -76,7 +73,7 @@ export default function History() {
         .then(()=>{
             setLoading(false)
         })
-    },[sortUser,sortAsset,sortCode,sortDate,show,startDate,endDate,page])
+    },[sortBy,show,startDate,endDate,page])
 
     let items = [];
     if(!loading){
@@ -108,7 +105,7 @@ export default function History() {
     }
 
     return (
-        <div className="history-page w-100 px-md-5 px-2 py-2 mt-5">
+        <div className="history-page w-100 px-md-5 px-2 py-2 mt-5 overflow-auto">
             
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -145,8 +142,8 @@ export default function History() {
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Staff</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={()=>{setSortUser('')}} className={sortUser===''?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{setSortUser('-')}} className={sortUser==='-'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortBy('user')}} className={sortBy==='user'?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortBy('-user')}} className={sortBy==='-user'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -155,8 +152,8 @@ export default function History() {
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Asset Name</Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={()=>{setSortAsset('')}} className={sortAsset===''?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{setSortAsset('-')}} className={sortAsset==='-'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortBy('asset')}} className={sortBy==='asset'?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortBy('-asset')}} className={sortBy==='-asset'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -164,8 +161,8 @@ export default function History() {
                     <Dropdown>
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Asset ID</Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={()=>{setSortCode('')}} className={sortCode===''?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{setSortCode('-')}} className={sortCode==='-'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortBy('code')}} className={sortBy==='code'?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortBy('-code')}} className={sortBy==='-code'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
@@ -174,8 +171,8 @@ export default function History() {
                     <Dropdown>
                         <Dropdown.Toggle variant="" className="text-white font-weight-bold">Date</Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={()=>{setSortDate('')}} className={sortDate===''?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{setSortDate('-')}} className={sortDate==='-'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortBy('date')}} className={sortBy==='date'?'bg-primary text-white':'bg-white'}>Ascending</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setSortBy('-date')}} className={sortBy==='-date'?'bg-primary text-white':'bg-white'}>Descending</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col>
