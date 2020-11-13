@@ -4,7 +4,7 @@ import Error from "./components/404/Error"
 import Dashboard from "./components/dashboard/Dashboard";
 import History from "./components/history/History";
 import AssetDetail from "./components/asset/asset-detail/AssetDetail";
-import AssetAdd from "./components/asset/asset-add/AddAssetForm";
+import AddAssetForm from "./components/asset/asset-add/AddAssetForm";
 import Asset from "./components/asset/Asset";
 import Profile from "./components/profile/Profile";
 
@@ -79,6 +79,6 @@ export const USER_ROUTE = [
         to : "/home/asset/add",
         exact : true,
         hidden: true,
-        component : AssetAdd,
+        component : AddAssetForm,
     },
 ]

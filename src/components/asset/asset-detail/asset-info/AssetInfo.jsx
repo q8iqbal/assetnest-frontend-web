@@ -1,26 +1,8 @@
 import React from 'react';
 import './AssetInfo.scss';
 import {Table, Card, Button} from 'react-bootstrap';
-<<<<<<< HEAD
-import {BASE_URL, GET_ASSET } from '../../../../constants/urls';
-import axios from 'axios';
-import { Link, useLocation , useHistory} from "react-router-dom"
 
 export default function AssetInfo(props){
-    const id = props.asset.id;
-    const history = useHistory();
-
-    const handleDelete = () => {
-        axios.delete(`${GET_ASSET}${id}`)
-        .then(
-            history.push('/home/asset')
-        )
-    }
-
-=======
-
-export default function AssetInfo(props){
->>>>>>> dev-nawa-2
     return(
         <div className="asset-info">
             <Card>
@@ -54,12 +36,8 @@ export default function AssetInfo(props){
                         <p className="col-md-8">{props.asset.note}</p>
                     </div>
                     <div className="float-right">
-<<<<<<< HEAD
-                        <Button variant="danger" className="mr-2" onClick={handleDelete}>Delete</Button>
-=======
                         <Button variant="danger" className="mr-2">Delete</Button>
                         <Button variant="success">Edit</Button>
->>>>>>> dev-nawa-2
                     </div>
                 </Card.Body>
             </Card>
