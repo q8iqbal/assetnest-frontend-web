@@ -22,7 +22,7 @@ export default function Asset(){
     },[]);
 
     return(
-        <div>
+        <div className="w-100 mt-2">
             <h4 className="d-inline-block detail-option px-1 mr-2">All Assets</h4>
             <h4 className="d-inline-block detail-option disabled">Filter By</h4>
             <Form className="d-inline-block form-inline float-right">

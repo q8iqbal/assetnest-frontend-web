@@ -21,7 +21,7 @@ function Profile(props) {
     axios.defaults.headers.common['Authorization']='Bearer'+getCookie();
 
     return (
-        <div>
+        <div className="w-100">
             <h1><span className="text-primary">{user.role}</span> | {user.name}</h1>
             {
                 user.image == null ? (
