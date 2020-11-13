@@ -8,7 +8,7 @@ import axios from 'axios';
 import { getCookie } from '../../utils/auth';
 import { Link, useLocation , useHistory} from "react-router-dom"
 
-export default function AssetList(){
+export default function Asset(){
     axios.defaults.headers.common['Authorization'] = 'Bearer'+getCookie();
     const [assets, setAssets] = useState([]);
     const history = useHistory();

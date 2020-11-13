@@ -173,7 +173,7 @@ function AddAssetForm() {
             <Alert.Heading>Data Submitted Successfully!</Alert.Heading>
             <hr/>
             <div className="d-flex justify-content-end">
-                <Link to={`/home/asset/${assetId}`}>
+                <Link to={`/home/asset/show/${assetId}`}>
                     <Button variant="outline-success">Go to asset detail</Button>
                 </Link>
             </div>
@@ -327,7 +327,7 @@ function AddAssetForm() {
                                 <Button type="submit" className="AssetForm_submit-button">
                                     Add New Asset
                                 </Button>
-                            <Link to="/home/asset/list">
+                            <Link to="/home/asset">
                                 <button type="button" className="btn AssetForm_grey-button">
                                     Cancel
                                 </button>
