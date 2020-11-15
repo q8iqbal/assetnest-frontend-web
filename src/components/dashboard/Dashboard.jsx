@@ -38,7 +38,7 @@ export default function Dashboard() {
                 <Col lg={4}>
                 {
                     companyData.image == null ? (
-                       <img src={CompanyImage} alt="logo" width="100%"/>
+                        <img src={CompanyImage} alt="logo" width="100%"/>
                     ) : (
                         <img src={`${BASE_URL}${companyData.image}`} alt="logo" width="100%"/>
                     )
@@ -84,7 +84,7 @@ export default function Dashboard() {
                     </Col>
                 ):(<>
                 {
-                    <Row xs={1} md={2} lg={3} className="card-row overflow-auto h-50 bg-white">
+                    <Row xs={1} md={2} lg={3} className="card-row h-50 bg-white">
                     { 
                         type.map((value,idx)=>{
                             return(
