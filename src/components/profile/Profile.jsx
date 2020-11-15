@@ -31,15 +31,15 @@ function Profile() {
                 <Col sm={8} md={9} lg={10}   className="bg-white rounded py-3 mt-4 mt-lg-0 shadow">
                         <div className="row mb-2 no-gutters">
                             <h5 className="col-md-3 col-sm-6 label">Fullname</h5>
-                            <h5 className="col-md-9 col-sm-6">{user.name}</h5>
+                            <h5 className="col-md-9 col-sm-6 font-weight-bold">{user.name}</h5>
                         </div>
                         <div className="row mb-2 no-gutters">
                             <h5 className="col-md-3 col-sm-6 label">Role</h5>
-                            <h5 className="col-md-9 col-sm-6">{user.role}</h5>
+                            <h5 className="col-md-9 col-sm-6 font-weight-bold">{user.role}</h5>
                         </div>
                         <div className="row mb-2 no-gutters">
                             <h5 className="col-md-3 col-sm-6 label">Email</h5>
-                            <h5 className="col-md-9 col-sm-6">{user.email}</h5>
+                            <h5 className="col-md-9 col-sm-6 font-weight-bold">{user.email}</h5>
                         </div>  
                         <div className="row mb-2 no-gutters d-flex justify-content-end">
                             <Button variant="danger" className="font-weight-bold" onClick={handleLogout}>Logout</Button>
