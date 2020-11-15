@@ -76,7 +76,7 @@ export default function Login() {
                         <Alert.Heading>Email and Password is invalid!</Alert.Heading>
                     </Alert>
 
-                    <img src={Logo} alt="logo bambang" className="app-logo mt-md-4"/>
+                    <img src={Logo} alt="logo bambang" className="app-logo mt-md-5"/>
 
                     <Form noValidate onSubmit={handleSubmit} className="mb-md-5">
                         <Form.Group className="position-relative search-field">
@@ -100,7 +100,6 @@ export default function Login() {
                             isInvalid={!!errors.inputPassword}
                             />
                             <FormControl.Feedback type="invalid" tooltip>{errors.inputPassword}</FormControl.Feedback>
-                            <Link className="float-right" to="/">Forgot Password</Link>
                         </Form.Group>
                         <Button type="submit" className="w-100 mb-3">
                             Sign In
