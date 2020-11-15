@@ -14,7 +14,7 @@ registerLocale('id', id)
 export default function History() {
     axios.defaults.headers.common['Authorization'] = 'Bearer'+getCookie()
     const [loading , setLoading] = useState(true)
-    const [startDate, setStartDate] = useState(new Date(Date.now() - 1000* 60 * 60 * 24 * 30 * 12))
+    const [startDate, setStartDate] = useState(new Date('1-1-2000'))
     const [endDate, setEndDate] = useState(new Date())
     const [page, setPage] = useState(1)
     const [histories, setHistories] = useState()
@@ -125,13 +125,13 @@ export default function History() {
             {/* header function */}
             <Row className="head-section"  style={{marginRight:0, marginLeft:0, alignItems:"center"}} xs={1} md={2}>
                 <Col className="d-flex align-items-center" >
-                    <h2 className="text-primary">All Histories</h2>
+                    <h2 className="text-primary font-weight-bold">All Histories</h2>
                 </Col>
 
                 <Col className="d-flex align-items-center justify-content-end">
-                    <DatePicker DatePicker selected={startDate} onChange={date => setStartDate(date)} customInput={<ExampleCustomInput />} dateFormat="d MMMM yyyy" placeholderText="Click to select a date"/>
+                    <DatePicker DatePicker selected={startDate} onChange={date => setStartDate(date)} customInput={<ExampleCustomInput />} dateFormat="d MMMM yyyy" placeholderText="Click to select a date" showYearDropdown showMonthDropdown/>
                     <HiOutlineArrowNarrowRight className="mx-2"/>
-                    <DatePicker DatePicker selected={endDate} onChange={date => setEndDate(date)} customInput={<ExampleCustomInput />} dateFormat="d MMMM yyyy" placeholderText="Click to select a date"/>
+                    <DatePicker DatePicker selected={endDate} onChange={date => setEndDate(date)} customInput={<ExampleCustomInput />} dateFormat="d MMMM yyyy" placeholderText="Click to select a date" showYearDropdown showMonthDropdown/>
                 </Col>
             </Row>
 
@@ -203,7 +203,7 @@ export default function History() {
                                     <Col md={2}>{value.user}</Col>
                                     <Col md={2}>{value.asset}</Col>
                                     <Col md={2}>{value.code}</Col>
-                                    <Col md={2}>{value.status}</Col>
+                                    <Col md={2} className="font-weight-bold">{value.status}</Col>
                                     <Col md={3}>{value.date}</Col>
                                     <Col md={1} className="d-flex align-items-center justify-content-end">
                                         <Button variant="danger" className="px-2" value={value.id} style={{backgroundColor:"#fc646c"}} onClick={handleShow.bind(this,value.id)}>
@@ -219,7 +219,7 @@ export default function History() {
 
             {/* footer table */}
             <div className=" footer-section mt-4">
-                {!loading? ( <p className="float-left">Showing {response.from+"-"+response.to} of {response.total} Assets</p> ): ""}
+                {!loading? ( <p className="float-left">Showing {response.from===null? 0 :response.from+"-"+response.to} of {response.total} Assets</p> ): ""}
                 <Pagination className="border-none float-right">{items}</Pagination>
             </div>
         </div>
