@@ -32,16 +32,13 @@ export default function Sidebar(props) {
         setSidebar(!sidebar)
     }
 
-    const handleSignOut = () => {
+    const handleLogout = () => {
         logout()
         history.push('/login')
     }
 
     const handleProfile = () => {
         setSidebarItem([false, false, false])
-    }
-    const handleNothing = ()=>{
-
     }
     
 
@@ -71,11 +68,11 @@ export default function Sidebar(props) {
                             <Dropdown.Menu align="left">
                                 <Dropdown.Item onClick={handleProfile}><Link to="/home/profile" className="text-decoration-none text-dark">Profile</Link></Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item onClick={handleSignOut}>Sign Out</Dropdown.Item>
+                                <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                 </Navbar>
-                <div id="page-content" className="d-flex" style={{backgroundColor:"#f9f9f9", height:"90%"}}>
+                <div id="page-content" className="d-flex overflow-auto" style={{backgroundColor:"#f9f9f9", height:"90%"}}>
                     {props.children}
                 </div>
             </div>
