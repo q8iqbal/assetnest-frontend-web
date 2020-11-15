@@ -1,21 +1,31 @@
-tbody{
-    background-color: white;
-}
+.asset-page{
+    .content-header{
+        height: 3rem;
+        button{
+            padding-left: 0;
+        }
+    }
 
-.table{
-    border-collapse: separate;
-    border-spacing: 0px 10px;
-    border-radius: 20px;
-}
+    .content-section{
+        height: 3rem;
+    }
 
-.detail-option{
-    border-bottom: 0.3rem solid #ff7b4b;
-}
-.disabled{
-    opacity: 50%;
-    border: none;
-}
+    
+    @media only screen and (max-width: 1024px){
+        .content-section{
+            height: 8rem;
+        }
 
-.putih{
-    color: white;
+        .content-header{
+            height: 5rem;
+        }
+    }
+
+    .pagination{
+        a{
+            color: #3e4243;
+            border-radius: 0 !important;
+            border: none;
+        }
+    }
 }
