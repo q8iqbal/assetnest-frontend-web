@@ -192,9 +192,9 @@ export default function History() {
                             </Spinner>
                     </Row>
                 ) : (
-                    histories===null? (
-                        <Row className="content-section bg-white rounded mt-3 shadow"  style={{marginRight:0, marginLeft:0, alignItems:"center"}} md={6} xs={3}>
-                            Empty
+                    histories.length===0? (
+                        <Row className="content-section bg-white rounded mt-3 shadow"  style={{marginRight:0, marginLeft:0}} md={6} xs={3}>
+                        <div className="m-auto text-center">Data Empty</div>
                         </Row>
                     ):(
                         histories.map(value => {
