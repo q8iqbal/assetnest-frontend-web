@@ -15,18 +15,16 @@ export default function Dashboard() {
     const [loading, setLoading] = useState(true)
     const lorem = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus excepturi ea dolorem id totam, fugiat ratione, cumque vitae repellat voluptatum ipsam iusto delectus error, voluptates nam illo. Delectus, id dolores?rem'
 
-    let allCount = []
+    let allCount = new Array(type.length)
     useEffect(()=> {
         setLoading(true)
-
-        type.map((value)=>{
+        type.map((value, idx)=>{
             axios.get(`${GET_ASSET_COUNT}?filter[type]=${value}`)
             .then(response=>{
-                allCount.push(response.data.data)
-                if(allCount.length === type.length){
-                    setAssetCount(allCount)
+                allCount[idx] = (response.data.data)
+                setAssetCount(allCount)
+                if(idx === type.length-1)
                     setLoading(false)
-                }
             })
         })
     },[])
