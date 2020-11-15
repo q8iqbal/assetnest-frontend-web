@@ -1,54 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button'
-import Pencil from '../../assets/icons/edit.svg'
-import {getUser } from '../../utils/auth.js'
-import { getCookie } from '../../utils/auth'
-import axios from 'axios'
+import React  from 'react';
+import {Button , Row, Col} from 'react-bootstrap'
+import {getUser, logout } from '../../utils/auth'
+import {useHistory} from "react-router-dom"
 import './Profile.scss'
 import {BASE_URL} from '../../constants/urls'
-import PorfileImage from '../../assets/icons/profile.png'
+import ProfileImage from '../../assets/icons/profile.png'
 
-function Profile(props) {
-    // console.log(JSON.parse(localStorage.getItem("USER")));
-    const id = JSON.parse(localStorage.getItem("USER")).id;
-    // console.log(id);
-    const [user, setUser] = useState({});
-
-    useEffect(() => {
-        setUser(getUser)
-    },[]);
+function Profile() {
+    const history = useHistory()
+    const user = getUser()
+    const handleLogout = ()=>{
+        logout()
+        history.push('/login')
+    }
     
-    axios.defaults.headers.common['Authorization']='Bearer'+getCookie();
-
     return (
-        <div className="w-100">
-            <h1><span className="text-primary">{user.role}</span> | {user.name}</h1>
-            {
-                user.image == null ? (
-                    <img src={BASE_URL + user.image} className="rounded-circle profile-image float-left mr-3" alt="icon admin"/>
-                ) : (
-                    <img src={BASE_URL + user.image} className="rounded-circle profile-image float-left mr-3" alt="icon admin"/>
-                )
-            }
-            <div className="user-info rounded p-3">
-                <Button type="submit" className="btn-pencil float-right">
-                    <img src={Pencil} alt=""/>
-                </Button>
-                <div className="w-75">
-                    <div className="row mb-2 no-gutters">
-                        <h5 className="col-md-3 col-sm-6 label">Fullname</h5>
-                        <h5 className="col-md-9 col-sm-6">{user.name}</h5>
-                    </div>
-                    <div className="row mb-2 no-gutters">
-                        <h5 className="col-md-3 col-sm-6 label">Role</h5>
-                        <h5 className="col-md-9 col-sm-6">{user.role}</h5>
-                    </div>
-                    <div className="row mb-2 no-gutters">
-                        <h5 className="col-md-3 col-sm-6 label">Email</h5>
-                        <h5 className="col-md-9 col-sm-6">{user.email}</h5>
-                    </div>  
-                </div>
-            </div>
+        <div className="w-100 mx-md-5 mt-5 mx-3 profile-wrapper" >
+            <Row><h1 className="text-capitalize"><span className="text-primary">{user.role}</span> | {user.name}</h1></Row>
+            <Row sm={2} xs={1} className="mt-4">
+                <Col sm={4} md={3} lg={2} className="d-flex justify-content-center">
+                {
+                    user.image == '' ? (
+                        <img src={ProfileImage} className="rounded-circle profile-image float-left mr-3" alt="icon admin"/>
+                    ) : (
+                        <img src={BASE_URL + user.image} className="rounded-circle profile-image float-left mr-3" alt="profile picture"/>
+                    )
+                }
+                </Col>
+
+                <Col sm={8} md={9} lg={10}   className="bg-white rounded py-3 mt-4 mt-lg-0 shadow">
+                        <div className="row mb-2 no-gutters">
+                            <h5 className="col-md-3 col-sm-6 label">Fullname</h5>
+                            <h5 className="col-md-9 col-sm-6">{user.name}</h5>
+                        </div>
+                        <div className="row mb-2 no-gutters">
+                            <h5 className="col-md-3 col-sm-6 label">Role</h5>
+                            <h5 className="col-md-9 col-sm-6">{user.role}</h5>
+                        </div>
+                        <div className="row mb-2 no-gutters">
+                            <h5 className="col-md-3 col-sm-6 label">Email</h5>
+                            <h5 className="col-md-9 col-sm-6">{user.email}</h5>
+                        </div>  
+                        <div className="row mb-2 no-gutters d-flex justify-content-end">
+                            <Button variant="danger" className="font-weight-bold" onClick={handleLogout}>Logout</Button>
+                        </div> 
+                </Col>
+            </Row>
         </div>
     );
 }
