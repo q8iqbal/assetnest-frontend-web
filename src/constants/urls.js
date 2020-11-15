@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:8080';
+export const BASE_URL = 'http://api.assetnest.me';
 
 //user
 export const POST_LOGIN = `${BASE_URL}/login`;
