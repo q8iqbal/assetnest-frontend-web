@@ -50,7 +50,8 @@ function AddAssetForm() {
         fileAttachments: Yup.array()
             .test("is-not-big-file", "File size should be below 8 MB!", (files) => {
                 let valid = true;
-                if (!!files) {
+                if (!!files.includes(undefined)) {
+                    console.log(files)
                     files.map((file) => {
                         if (!!file && file.size > 8388608) {
                             valid = false;
