@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="287.677" height="74.06" viewBox="0 0 287.677 74.06">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: #3e4243;
+      }
+
+      .cls-1 {
+        font-size: 45px;
+        font-family: SegoeUI, Segoe UI;
+      }
+
+      .cls-2 {
+        fill: #ff7b4b;
+      }
+
+      .cls-3 {
+        font-size: 13px;
+        font-family: Montserrat-Medium, Montserrat;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+  <g id="Group_22" data-name="Group 22" transform="translate(55.736 -234.373)">
+    <text id="AssetNest_" data-name="AssetNest " class="cls-1" transform="translate(126.941 283.373)"><tspan x="-104.93" y="0">Asset</tspan><tspan class="cls-2" y="0">Nest </tspan></text>
+    <path id="Path_2" data-name="Path 2" class="cls-2" d="M202.392,59.113l-1.806-1.045-5.192-3-1.8-1.034-8.82-5.092,5.843-3.376-.052.089,21.078,12.175,1.239-2.142L192.995,44.2l6.814-3.932-1.239-2.142L171.071,54l-1.811,1.045-1.417.819V49.233l21.078-12.164-1.239-2.142L167.843,46.382V38.57h-2.478V74.054l-5.733-3.307V46.4h-2.478V69.314l-6.762-3.906-1.239,2.142L176.82,83.525l1.864,1.076,1.2.693-.771.446-1.559.9-3.407,1.963L153.07,76.438l-1.239,2.142L171.67,90.04l-6.762,3.9,1.239,2.142L179.3,88.491l1.864-1.081h.005l4.856-2.8h.005l1.869-1.082,8.977-5.181v6.63L175.8,97.138l1.239,2.142,19.839-11.455v7.817h2.478V60.215l.64.368,1.565.9,3.528,2.037V87.809h2.478V64.951l6.762,3.906,1.239-2.142ZM170.153,76.821l-2.31-1.334V58.719l2.31-1.334Zm12.264-26.512-.058.094,9.6,5.539.142.084V65.7L173.922,55.212Zm-9.791,7.008L192.1,68.563v2.646L172.625,59.963Zm14.542,23.777-1.57.9-3.239,1.869-3.244-1.874-1.565-.9-4.924-2.846V68.463l18.206,10.515Zm4.929-4.242-19.472-11.24V62.825L192.1,74.065Zm4.778-1.365-2.3,1.334V57.449l2.3,1.334Z" transform="translate(-204.889 204.446)"/>
+    <text id="easiest_asset_management_app" data-name="easiest asset management app" class="cls-3" transform="translate(22.234 300.18)"><tspan x="0" y="0">easiest asset management app</tspan></text>
+  </g>
+</svg>
