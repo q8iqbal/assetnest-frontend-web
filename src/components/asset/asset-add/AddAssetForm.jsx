@@ -52,7 +52,7 @@ function AddAssetForm() {
                 let valid = true;
                 if (!!files) {
                     files.map((file) => {
-                        if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
+                        if (!!file && file.size > 8388608) {
                             valid = false;
                         }
                     })
