@@ -55,9 +55,6 @@ function AddAssetForm() {
                         if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
                             valid = false;
                         }
-                        if (!!file && file.size > 8388608) {
-                            valid = false;
-                        }
                     })
                 }
                 return valid;
