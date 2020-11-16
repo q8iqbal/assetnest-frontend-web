@@ -17,6 +17,7 @@
         min-height: 100vh;
         width: 28rem;
         height: 100%;  
+        z-index: 2;
     }
 
     .dropdown-menu{
@@ -43,7 +44,6 @@
             transition: margin .25s ease-out;
             width: 20rem;
             position: fixed; 
-            z-index: 1; 
             top: 0; 
             left: 0;
             overflow-x: hidden;

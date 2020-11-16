@@ -1,0 +1,19 @@
+.asset-history{
+    @media only screen and (max-width: 1024px){
+        .content-section{
+            height: 8rem;
+        }
+
+        .content-header{
+            height: 5rem;
+        }
+    }
+
+    .pagination{
+        a{
+            color: #3e4243;
+            border-radius: 0 !important;
+            border: none;
+        }
+    }
+}

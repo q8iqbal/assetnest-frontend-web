@@ -8,10 +8,10 @@ export const POST_LOGIN = `${BASE_URL}/login`;
 export const GET_COMPANY = `${BASE_URL}/companies`
 
 //asset
-export const GET_ASSET = `${BASE_URL}/assets/`
+export const GET_ASSET = `${BASE_URL}/assets`
 export const GET_ASSET_COUNT = `${BASE_URL}/assets/count`
 
-export const DEL_ASSET = `${BASE_URL}/assets/`
+export const DEL_ASSET = `${BASE_URL}/assets`
 
 
 //histories

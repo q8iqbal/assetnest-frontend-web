@@ -2,6 +2,7 @@ import React  from 'react';
 import {Button , Row, Col} from 'react-bootstrap'
 import {getUser, logout } from '../../utils/auth'
 import {useHistory} from "react-router-dom"
+import {BsPencilSquare} from 'react-icons/bs'
 import './Profile.scss'
 import {BASE_URL} from '../../constants/urls'
 import ProfileImage from '../../assets/icons/profile.png'
@@ -31,17 +32,18 @@ function Profile() {
                 <Col sm={8} md={9} lg={10}   className="bg-white rounded py-3 mt-4 mt-lg-0 shadow">
                         <div className="row mb-2 no-gutters">
                             <h5 className="col-md-3 col-sm-6 label">Fullname</h5>
-                            <h5 className="col-md-9 col-sm-6 font-weight-bold">{user.name}</h5>
+                            <h5 className="col-md-8 col-sm-5">{user.name}</h5>
                         </div>
                         <div className="row mb-2 no-gutters">
                             <h5 className="col-md-3 col-sm-6 label">Role</h5>
-                            <h5 className="col-md-9 col-sm-6 font-weight-bold">{user.role}</h5>
+                            <h5 className="col-md-8 col-sm-5">{user.role}</h5>
                         </div>
                         <div className="row mb-2 no-gutters">
                             <h5 className="col-md-3 col-sm-6 label">Email</h5>
-                            <h5 className="col-md-9 col-sm-6 font-weight-bold">{user.email}</h5>
+                            <h5 className="col-md-8 col-sm-5 ">{user.email}</h5>
                         </div>  
                         <div className="row mb-2 no-gutters d-flex justify-content-end">
+                            {/* <Button className="mr-2 font-weight-bold">Edit Profile</Button> */}
                             <Button variant="danger" className="font-weight-bold" onClick={handleLogout}>Logout</Button>
                         </div> 
                 </Col>

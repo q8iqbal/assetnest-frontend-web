@@ -23,8 +23,12 @@ export default function Dashboard() {
             .then(response=>{
                 allCount[idx] = (response.data.data)
                 setAssetCount(allCount)
-                if(idx === type.length-1)
+            })
+            .catch()
+            .then(()=>{
+                if(!allCount.includes(undefined)){
                     setLoading(false)
+                }
             })
         })
     },[])

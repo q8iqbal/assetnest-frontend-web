@@ -38,7 +38,7 @@ function AddAssetForm() {
         price: Yup.number().required("Price Required!")
             .positive("Price should be positive values!"),
         image: Yup.mixed()
-            .test("is-correct-file", "Photo should be .jpg, .jpeg, or .png!", (file?: File) => {
+            .test("fileFormat", "Photo should be .jpg, .jpeg, or .png!", (file) => {
                 let valid = true;
                 if (!!file) {
                     if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
@@ -48,17 +48,21 @@ function AddAssetForm() {
                 return valid;
             }).nullable().notRequired(),
         fileAttachments: Yup.array()
-            .test("is-not-big-file", "File size should be below 8 MB!", (files?: [File]) => {
+            .test("is-not-big-file", "File size should be below 8 MB!", (files) => {
                 let valid = true;
                 if (!!files) {
                     files.map((file) => {
+                        if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
+                            valid = false;
+                        }
                         if (!!file && file.size > 8388608) {
                             valid = false;
                         }
                     })
                 }
                 return valid;
-            }).nullable().notRequired(),
+            })
+            .nullable().notRequired(),
         note: Yup.string().nullable().notRequired()
     });
 
@@ -104,21 +108,22 @@ function AddAssetForm() {
         let formData = new FormData();
 
         formData.append("image", values.image);
-        axios.post(`${GET_ASSET}image`, formData, formDataConfig)
+        axios.post(`${GET_ASSET}/image`, formData, formDataConfig)
             .then(postAssetImage_response => {
                 console.log("Post Asset Image Response : ", postAssetImage_response);
 
                 if (!!postAssetImage_response.data.data) {
                     assetData.asset.image = postAssetImage_response.data.data.path;
                 }
+                console.log(assetData)
 
-                axios.post(GET_ASSET, assetData, jsonConfig)
+                axios.post(GET_ASSET+'/', assetData, jsonConfig)
                     .then(postasset_response => {
                         console.log("Post Asset Response : ", postasset_response);
                 
                         const id = postasset_response.data.data.id;
                         setAssetId(id);
-                        const POST_ATTACHMENT = `${GET_ASSET}${id}/attachment`;
+                        const POST_ATTACHMENT = `${GET_ASSET}/${id}/attachment`;
                         
                         if (attachmentData.length === 0) {
                             setShowSuccess(true);
@@ -166,22 +171,26 @@ function AddAssetForm() {
         { value: 'Etc', key: 'Etc'}
     ];
 
-    return (<div className="AssetForm">
+    return (
+    <div className="AssetForm mx-3 mx-md-4">
+
         <Alert show={showFailed} variant="danger" 
                 onClose={() => setShowFailed(false)} dismissible>
             <Alert.Heading>Failed to Submit Some Data!</Alert.Heading>
         </Alert>
-        <Alert show={showFailed ? false : showSuccess} variant="success" 
+
+        <Alert show={showSuccess} variant="success" 
                 onClose={() => setShowSuccess(false)} dismissible>
             <Alert.Heading>Data Submitted Successfully!</Alert.Heading>
             <hr/>
             <div className="d-flex justify-content-end">
-                <Link to={() => history.push({ pathname : 'show/'+assetId, state : assetId })}>
+                <Link to={() => history.push({ pathname : '/home/asset/'+assetId, state : assetId })}>
                     <Button variant="outline-success">Go to asset detail</Button>
                 </Link>
             </div>
         </Alert>
-        <h5 className="d-inline-block AssetForm_title">Add a New Asset</h5>
+
+        <h5 className="d-inline-block font-weight-bold text-primary font-weight-bold">Add a New Asset</h5>
         <div className="AddAssetForm">
         <Formik 
             initialValues={initialValues}
@@ -190,8 +199,6 @@ function AddAssetForm() {
             validateOnChange={false} 
             >
             {formik => {
-                console.log(formik);
-
                 return (<Form onSubmit={formik.handleSubmit} noValidate 
                             encType="multipart/form-data">
                     <FieldControl
@@ -255,10 +262,8 @@ function AddAssetForm() {
                             label={(!!formik.values.image) 
                                     ? formik.values.image.name 
                                     : "Choose a file"}
-                            feedback={formik.errors.image}
                             custom
-                            feedbackTooltip
-                             />
+                            />
                     </Form.Group>
                     <FieldArray name="fileAttachments" id="fileAttachements">
                         {fieldArrayProps => {
@@ -292,6 +297,7 @@ function AddAssetForm() {
                                                     ? formik.values.fileAttachments[index].name
                                                     : "Choose a file"}
                                         feedback={formik.errors.fileAttachments}
+                                        accept="image/jpg, image/jpeg, image/png"
                                         custom
                                     />
                                     {((fileAttachments.length > 1 && index === fileAttachments.length - 1) 
@@ -327,7 +333,7 @@ function AddAssetForm() {
                         errorMessage={formik.errors.note} />
                     <Form.Group as={Row} className="AssetForm_form-group">
                         <Col sm={12} className="AssetForm_button-row">
-                                <Button type="submit" className="AssetForm_submit-button">
+                                <Button type="submit" className="AssetForm_submit-button font-weight-bold">
                                     Add New Asset
                                 </Button>
                             <Link to="/home/asset">

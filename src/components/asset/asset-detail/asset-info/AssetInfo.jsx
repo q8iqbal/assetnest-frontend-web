@@ -1,6 +1,6 @@
 import React from 'react';
 import './AssetInfo.scss';
-import {Table, Card, Button} from 'react-bootstrap';
+import {Card, Button} from 'react-bootstrap';
 
 export default function AssetInfo(props){
     return(
@@ -8,7 +8,7 @@ export default function AssetInfo(props){
             <Card>
                 <Card.Body>
                     <div className="row mb-3 no-gutters">
-                        <p className="col-md-4 label">Asset ID</p>
+                        <p className="col-md-4 label">Asset Id</p>
                         <p className="col-md-8">{props.asset.code}</p>
                     </div>
                     <div className="row mb-3 no-gutters">
@@ -17,10 +17,10 @@ export default function AssetInfo(props){
                     </div>
                     <div className="row mb-3 no-gutters">
                         <p className="col-md-4 label">Price</p>
-                        <p className="col-md-8">{props.asset.price}</p>
+                        <p className="col-md-8">{"Rp."+props.asset.price}</p>
                     </div>
                     <div className="row mb-3 no-gutters">
-                        <p className="col-md-4 label">Purcahse Date</p>
+                        <p className="col-md-4 label">Purchase Date</p>
                         <p className="col-md-8">{props.asset.purchase_date}</p>
                     </div>
                     <div className="row mb-3 no-gutters">
@@ -36,8 +36,8 @@ export default function AssetInfo(props){
                         <p className="col-md-8">{props.asset.note}</p>
                     </div>
                     <div className="float-right">
-                        <Button variant="danger" className="mr-2">Delete</Button>
-                        <Button variant="success">Edit</Button>
+                        <Button variant="danger" className="mr-2 font-weight-bold" onClick={props.handleDelete}>Delete</Button>
+                        <Button variant="success" className=" font-weight-bold" onClick={props.handleUpdate}>Edit</Button>
                     </div>
                 </Card.Body>
             </Card>

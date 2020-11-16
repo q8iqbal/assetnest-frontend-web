@@ -1,0 +1,100 @@
+.content {
+    height: auto;
+}
+
+.AssetUpdate_grey-button, .AssetUpdate_grey-button:active, .AssetUpdate_grey-button:visited {
+    background-color: #e2e2e2 !important;
+    color: #4a4d4e !important;
+}
+
+.AssetUpdate_submit-button, .AssetUpdate_grey-button {
+    float: right;
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.AssetUpdate_grey-button:hover {
+    background-color: #a2a2a2 !important;
+}
+
+.AssetUpdate_grey-button, .AssetUpdate_grey-button:hover {
+    border: none !important;
+}
+
+.AssetUpdate_button-row {
+    padding-right: 0 !important;
+}
+
+.AssetUpdate_form-group {
+    position: relative;
+}
+
+.AssetUpdate_form-file {
+    overflow: hidden;
+}
+
+.AssetUpdate_attachments .AssetUpdate_form-file {
+    width: 65% !important;
+}
+
+.AssetUpdate_attachments {
+    padding: 0 !important;
+}
+
+.AssetUpdate_title {
+    font-family: Poppins;
+    font-weight: 500 !important;
+    padding: 0rem 0.3rem;
+    border-bottom: 0.3rem solid #ff7b4b;
+    margin-bottom: 2rem;
+}
+
+.AssetUpdate {
+    padding: 3rem 2rem 0 2rem;
+
+    white-space: nowrap;
+    font-family: Montserrat;
+    font-weight: 550;
+    font-size: 1rem;
+}
+
+.AssetUpdate .alert-dismissible {
+    padding-right: 1rem !important;
+    margin-left: -0.3rem !important;
+}
+
+@media (max-width: 575.98px) {
+    .AddAssetUpdate {
+        width: 100%;
+    }
+    .AssetUpdate_attachments .AssetUpdate_form-file {
+        width: 65% !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .AddAssetUpdate {
+        width: 100%;
+    }
+    .AssetUpdate_attachments .AssetUpdate_form-file {
+        width: 65% !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .AddAssetUpdate {
+        width: 95%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .AddAssetUpdate {
+        width: 95%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .AddAssetUpdate {
+        width: 95%;
+    }
+}

@@ -27,7 +27,8 @@ export default function Home() {
                                 key={value.name}
                                 component={value.component}
                                 path={value.path}
-                                exact={value.exact}/>
+                                exact={value.exact}
+                                strict={value.strict}/>
                             )
                         })
                     }

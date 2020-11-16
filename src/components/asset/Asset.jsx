@@ -6,6 +6,7 @@ import { GET_ASSET, DEL_ASSET } from '../../constants/urls'
 import { getCookie } from '../../utils/auth'
 import axios from 'axios'
 import './Asset.scss'
+import { Link, useHistory } from 'react-router-dom';
 
 export default function History() {
     axios.defaults.headers.common['Authorization'] = 'Bearer'+getCookie()
@@ -17,7 +18,7 @@ export default function History() {
     const [sortBy , setSortBy] = useState('name')
     const [id , setId] = useState()
     const [assetName, setAssetName] = useState('')
-
+    const history = useHistory()
     const handleClose = () => setShow(false)
     const handleShow = (id) => {
         setId(id)
@@ -37,14 +38,13 @@ export default function History() {
 
     useEffect(()=>{
         setLoading(true)
-        axios.get(GET_ASSET+`?filter[name]=${assetName}`, {
+        axios.get(GET_ASSET+`/?filter[name]=${assetName}`, {
             params: {
                 sort: `${sortBy}`,
                 page: page,
             }
         })
         .then(function (response) {
-            console.log(response.data.data.data)
             setAssets(response.data.data.data)
             setResponse(response.data.data)
         })
@@ -55,11 +55,10 @@ export default function History() {
         .then(()=>{
             setLoading(false)
         })
-    },[sortBy,show,page])
+    },[sortBy,show,page,assetName])
 
     let items = [];
     if(!loading){
-        console.log(response)
         const active = response.current_page
         const pageNeighbour = 2
         const pageTotal = response.last_page
@@ -111,8 +110,8 @@ export default function History() {
                 </Col>
 
                 <Col className="d-flex align-items-center justify-content-end">
-                    <Form.Control placeholder="🔍 Search fixed assets" style={{width:"13rem"}} className="mr-2"/>
-                    <Button variant="primary" className="text-nowrap">Add New Asset</Button>
+                    <Form.Control placeholder="🔍 Search fixed assets" style={{width:"13rem"}} className="mr-2" value={assetName} onChange={(e)=>{setAssetName(e.target.value)}}/>
+                    <Button variant="primary" className="text-nowrap"> <Link to="/home/asset/add/" className="text-decoration-none text-white">Add New Asset</Link> </Button>
                 </Col>
             </Row>
 
@@ -164,9 +163,10 @@ export default function History() {
                     ):(
                         assets.map(value => {
                             return (
-                                <Row className="content-section bg-white rounded mt-3 shadow"  style={{marginRight:0, marginLeft:0, alignItems:"center"}} md={6} xs={3}>
-                                    <Col md={2}>{value.code}</Col>
-                                    <Col md={2}>{value.name}</Col>
+                                
+                                <Row className="content-section bg-white rounded mt-3 shadow "  style={{marginRight:0, marginLeft:0, alignItems:"center"}} md={6} xs={3}>
+                                    <Col md={2}> <Link className="text-dark" to={"/home/asset/"+value.id}>{value.code}</Link> </Col>
+                                    <Col md={2}> <Link className=" text-dark" to={"/home/asset/"+value.id}>{value.name}</Link></Col>
                                     <Col md={2}>{value.type}</Col>
                                     <Col md={2} className="font-weight-bold">{value.status}</Col>
                                     <Col md={3}>{value.location}</Col>

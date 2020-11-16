@@ -5,6 +5,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import History from "./components/history/History";
 import AssetDetail from "./components/asset/asset-detail/AssetDetail";
 import AddAssetForm from "./components/asset/asset-add/AddAssetForm";
+import AssetUpdate from "./components/asset/asset-update/AssetUpdate";
 import Asset from "./components/asset/Asset";
 import Profile from "./components/profile/Profile";
 
@@ -67,18 +68,28 @@ export const USER_ROUTE = [
     },
     {
         name : "Asset Detail",
-        path : "/home/asset/show/:id",
-        to : "/home/asset/show/:id",
+        path : "/home/asset/:id",
+        to : "/home/asset/:id",
         exact : true,
+        strict : true,
         hidden: true,
         component : AssetDetail,
     },
     {
         name : "Add New Asset",
-        path : "/home/asset/add",
+        path : "/home/asset/add/",
         to : "/home/asset/add",
         exact : true,
+        strict : true,
         hidden: true,
         component : AddAssetForm,
     },
+    {
+        name : "Add New Asset",
+        path : "/home/asset/:id/update",
+        to : "/home/asset/add",
+        exact : true,
+        hidden: true,
+        component : AssetUpdate,
+    }
 ]
