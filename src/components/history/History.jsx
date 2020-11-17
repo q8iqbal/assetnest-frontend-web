@@ -14,7 +14,7 @@ registerLocale('id', id)
 export default function History() {
     axios.defaults.headers.common['Authorization'] = 'Bearer'+getCookie()
     const [loading , setLoading] = useState(true)
-    const [startDate, setStartDate] = useState(new Date('1-1-2000'))
+    const [startDate, setStartDate] = useState(new Date(Date.parse('12 Dec 2012')))
     const [endDate, setEndDate] = useState(new Date())
     const [page, setPage] = useState(1)
     const [histories, setHistories] = useState()
@@ -52,7 +52,7 @@ export default function History() {
     const handlePage = number => {
         setPage(number)
     }
-
+    console.log(startDate)
     useEffect(()=>{
         setLoading(true)
         axios.get(GET_HISTORY+`?filter[between]=${startDate.toISOString().slice(0, 19).replace('T', ' ')},${endDate.toISOString().slice(0, 19).replace('T', ' ')}`, {
