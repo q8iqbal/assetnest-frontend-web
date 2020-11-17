@@ -38,6 +38,7 @@ export default function Sidebar(props) {
     }
 
     const handleProfile = () => {
+        history.push("profile")
         setSidebarItem([false, false, false])
     }
     
@@ -66,7 +67,7 @@ export default function Sidebar(props) {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu align="left">
-                                <Dropdown.Item onClick={handleProfile}><Link to="/home/profile" className="text-decoration-none text-dark">Profile</Link></Dropdown.Item>
+                                <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                             </Dropdown.Menu>
