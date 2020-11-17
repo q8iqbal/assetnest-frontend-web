@@ -6,7 +6,7 @@ import Axios from 'axios';
 import './AssetHistory.scss'
 
 export default function AssetHistory(props) {
-    const [sortBy , setSortBy] = useState('name')
+    const [sortBy , setSortBy] = useState('-date')
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [response, setResponse] = useState()

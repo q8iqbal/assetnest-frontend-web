@@ -40,7 +40,6 @@ function AddAssetUpdate(props) {
         };
         Axios.get(GET_ASSET+"/"+assetId,config)
         .then(response => {
-            console.log(response.data.data)
             setInitialValues(response.data.data)
         })
         .catch(err => {
@@ -151,7 +150,6 @@ function AddAssetUpdate(props) {
                 }else{
                     assetData.asset.image = initialValues.image;
                 }
-                console.log(assetData)
 
                 axios.put(GET_ASSET+'/'+assetId, assetData, jsonConfig)
                     .then(postasset_response => {
@@ -207,6 +205,7 @@ function AddAssetUpdate(props) {
 
     const statusOptions = [
         { value: '', key: '- Type -'},
+        { value: 'barang baru', key: 'Barang baru' },
         { value: 'available', key: 'Available' },
         { value: 'dipinjam', key: 'Dipinjam' },
         { value: 'diservis', key: 'Diservis'},
@@ -320,11 +319,14 @@ function AddAssetUpdate(props) {
                                 }}
                                 isInvalid={!!formik.errors.image}
                                 accept="image/jpg, image/jpeg, image/png"
-                                label={(!!formik.values.image.name) 
-                                        ? formik.values.image.name 
+                                label={initialValues.image === null
+                                        ? "choose photo"
                                         : initialValues.image}
                                 custom
                                 />
+                                {
+                                    console.log(initialValues.image)
+                                }
                         </Form.Group>
                         <FieldControl
                             value={formik.values.note}
