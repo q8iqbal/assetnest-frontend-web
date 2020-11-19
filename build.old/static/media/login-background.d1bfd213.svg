@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-Web_1920_11);
+      }
+
+      .cls-2 {
+        fill: #ff7b4b;
+      }
+
+      .cls-3 {
+        fill: #f9f9f9;
+      }
+    </style>
+    <clipPath id="clip-Web_1920_11">
+      <rect width="1920" height="1080"/>
+    </clipPath>
+  </defs>
+  <g id="Web_1920_11" data-name="Web 1920 – 11" class="cls-1">
+    <g id="Group_1194" data-name="Group 1194">
+      <path id="Polygon_3" data-name="Polygon 3" class="cls-2" d="M685.5,0,914,396,685.5,792h-457L0,396,228.5,0Z" transform="translate(2169.5 623.5) rotate(90)"/>
+      <path id="Polygon_2" data-name="Polygon 2" class="cls-2" d="M685.5,0,914,396,685.5,792h-457L0,396,228.5,0Z" transform="translate(430.5 -499.5) rotate(90)"/>
+      <path id="Polygon_1" data-name="Polygon 1" class="cls-3" d="M555.75,0,741,321,555.75,642H185.25L0,321,185.25,0Z" transform="translate(321.5 -370.5) rotate(90)"/>
+      <path id="Polygon_4" data-name="Polygon 4" class="cls-3" d="M555.75,0,741,321,555.75,642H185.25L0,321,185.25,0Z" transform="translate(2060.5 752.5) rotate(90)"/>
+    </g>
+  </g>
+</svg>
