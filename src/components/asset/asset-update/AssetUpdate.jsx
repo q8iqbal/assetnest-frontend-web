@@ -205,11 +205,11 @@ function AddAssetUpdate(props) {
 
     const statusOptions = [
         { value: '', key: '- Type -'},
-        { value: 'idle', key: 'Barang baru' },
-        { value: 'lost', key: 'Available' },
-        { value: 'broken', key: 'Dipinjam' },
-        { value: 'maintenance', key: 'Diservis'},
-        { value: 'used', key: 'Hilang'}
+        { value: 'Idle', key: 'Idle' },
+        { value: 'Lost', key: 'Lost' },
+        { value: 'Broken', key: 'Broken' },
+        { value: 'Maintenance', key: 'Maintenance'},
+        { value: 'Used', key: 'Used'}
     ];
 
     return (
