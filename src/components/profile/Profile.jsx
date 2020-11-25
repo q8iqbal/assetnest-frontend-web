@@ -2,7 +2,6 @@ import React  from 'react';
 import {Button , Row, Col} from 'react-bootstrap'
 import {getUser, logout } from '../../utils/auth'
 import {useHistory} from "react-router-dom"
-import {BsPencilSquare} from 'react-icons/bs'
 import './Profile.scss'
 import {BASE_URL} from '../../constants/urls'
 import ProfileImage from '../../assets/icons/profile.png'
@@ -21,7 +20,7 @@ function Profile() {
             <Row sm={2} xs={1} className="mt-4">
                 <Col sm={4} md={3} lg={2} className="d-flex justify-content-center">
                 {
-                    user.image == '' ? (
+                    user.image === '' || user.image === null? (
                         <img src={ProfileImage} className="rounded-circle profile-image float-left mr-3" alt="icon admin"/>
                     ) : (
                         <img src={BASE_URL + user.image} className="rounded-circle profile-image float-left mr-3" alt="profile picture"/>

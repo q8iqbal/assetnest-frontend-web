@@ -14,7 +14,7 @@ export default function Home() {
     const userData = getUser()
     const companyData = getCompany()
 
-    const image = userData.image === ''? ProfileImage : BASE_URL+userData.image
+    const image = userData.image === '' || userData.image === null? ProfileImage : BASE_URL+userData.image
 
     return (
         <>
