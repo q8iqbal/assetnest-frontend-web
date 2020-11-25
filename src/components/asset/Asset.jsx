@@ -166,7 +166,7 @@ export default function History() {
                                 
                                 <Row className="content-section bg-white rounded mt-3 shadow "  style={{marginRight:0, marginLeft:0, alignItems:"center"}} md={6} xs={3}>
                                     <Col md={2}> <Link className="text-dark" to={"/home/asset/"+value.id}>{value.code}</Link> </Col>
-                                    <Col md={2}> <Link className=" text-dark" to={"/home/asset/"+value.id}>{value.name}</Link></Col>
+                                    <Col md={2}> <Link className=" text-dark text-elipsis" to={"/home/asset/"+value.id}>{value.name}</Link></Col>
                                     <Col md={2}>{value.type}</Col>
                                     <Col md={2} className="font-weight-bold">{value.status}</Col>
                                     <Col md={3}>{value.location}</Col>

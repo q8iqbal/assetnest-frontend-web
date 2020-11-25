@@ -201,7 +201,7 @@ export default function History() {
                             return (
                                 <Row className="content-section bg-white rounded mt-3 shadow"  style={{marginRight:0, marginLeft:0, alignItems:"center"}} md={6} xs={3}>
                                     <Col md={2}>{value.user}</Col>
-                                    <Col md={2}>{value.asset}</Col>
+                                    <Col md={2} className="text-elipsis">{value.asset}</Col>
                                     <Col md={2}>{value.code}</Col>
                                     <Col md={2} className="font-weight-bold">{value.status}</Col>
                                     <Col md={3}>{value.date}</Col>
