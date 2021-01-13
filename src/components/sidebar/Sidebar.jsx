@@ -38,7 +38,7 @@ export default function Sidebar(props) {
     }
 
     const handleProfile = () => {
-        history.push("profile")
+        history.push("/home/profile")
         setSidebarItem([false, false, false])
     }
     
@@ -59,7 +59,7 @@ export default function Sidebar(props) {
             <div className="page-wrapper">
                 <Navbar bg="primary" variant="dark" className="" style={{height:"10%"}}>
                     <Button onClick={handleCLick} className="button-sidebar"><FaBars/></Button>
-                    <Navbar.Brand className="ml-2 navbar-font"> {props.companyName} </Navbar.Brand>
+                    <Navbar.Brand className="ml-2 navbar-font text-elipsis"> {props.companyName} </Navbar.Brand>
                         <Dropdown className="ml-auto">
                             <Dropdown.Toggle className="text-light">
                                 <img src={props.userImage} alt="user" className="rounded-circle mr-2" width="30rem" height="30rem"/>
@@ -67,9 +67,10 @@ export default function Sidebar(props) {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu align="left">
-                                <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>
+                                <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>       
                                 <Dropdown.Divider />
                                 <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                                <Dropdown.Item ><Link to="/about">About us</Link></Dropdown.Item> 
                             </Dropdown.Menu>
                         </Dropdown>
                 </Navbar>

@@ -1,29 +1,37 @@
 {
   "files": {
-    "main.css": "/static/css/main.500ce1e6.chunk.css",
-    "main.js": "/static/js/main.2e084af6.chunk.js",
-    "main.js.map": "/static/js/main.2e084af6.chunk.js.map",
+    "main.css": "/static/css/main.1d6cd5b2.chunk.css",
+    "main.js": "/static/js/main.49fb483c.chunk.js",
+    "main.js.map": "/static/js/main.49fb483c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.a160cbcd.js",
     "runtime-main.js.map": "/static/js/runtime-main.a160cbcd.js.map",
     "static/css/2.b48e39b2.chunk.css": "/static/css/2.b48e39b2.chunk.css",
-    "static/js/2.7212ef1c.chunk.js": "/static/js/2.7212ef1c.chunk.js",
-    "static/js/2.7212ef1c.chunk.js.map": "/static/js/2.7212ef1c.chunk.js.map",
+    "static/js/2.f44ad9a1.chunk.js": "/static/js/2.f44ad9a1.chunk.js",
+    "static/js/2.f44ad9a1.chunk.js.map": "/static/js/2.f44ad9a1.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.0066877c883adb681966fb7cd060bbb0.js": "/precache-manifest.0066877c883adb681966fb7cd060bbb0.js",
+    "precache-manifest.a730bb746bdc35a682969b50b6249152.js": "/precache-manifest.a730bb746bdc35a682969b50b6249152.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.b48e39b2.chunk.css.map": "/static/css/2.b48e39b2.chunk.css.map",
-    "static/css/main.500ce1e6.chunk.css.map": "/static/css/main.500ce1e6.chunk.css.map",
-    "static/js/2.7212ef1c.chunk.js.LICENSE.txt": "/static/js/2.7212ef1c.chunk.js.LICENSE.txt",
+    "static/css/main.1d6cd5b2.chunk.css.map": "/static/css/main.1d6cd5b2.chunk.css.map",
+    "static/js/2.f44ad9a1.chunk.js.LICENSE.txt": "/static/js/2.f44ad9a1.chunk.js.LICENSE.txt",
+    "static/media/Danang.jpeg": "/static/media/Danang.056d4ee6.jpeg",
+    "static/media/Febilenia.jpeg": "/static/media/Febilenia.5d3f79b2.jpeg",
+    "static/media/Goldy.jpg": "/static/media/Goldy.fbd59cb1.jpg",
+    "static/media/Iqbal.jpg": "/static/media/Iqbal.ea34de5b.jpg",
+    "static/media/Kirana.jpg": "/static/media/Kirana.b141aa94.jpg",
+    "static/media/Nawa.png": "/static/media/Nawa.687d2d2b.png",
     "static/media/Login.scss": "/static/media/login-background.d1bfd213.svg",
     "static/media/header_sidebar.png": "/static/media/header_sidebar.701ff079.png",
     "static/media/profile.png": "/static/media/profile.4788048f.png",
+    "static/media/sponsor.png": "/static/media/sponsor.e6f55fc6.png",
+    "static/media/support.png": "/static/media/support.dfb09de7.png",
     "static/media/App.scss": "/static/media/verdana.7652f550.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.a160cbcd.js",
     "static/css/2.b48e39b2.chunk.css",
-    "static/js/2.7212ef1c.chunk.js",
-    "static/css/main.500ce1e6.chunk.css",
-    "static/js/main.2e084af6.chunk.js"
+    "static/js/2.f44ad9a1.chunk.js",
+    "static/css/main.1d6cd5b2.chunk.css",
+    "static/js/main.49fb483c.chunk.js"
   ]
 }

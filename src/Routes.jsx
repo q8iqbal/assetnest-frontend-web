@@ -8,6 +8,7 @@ import AddAssetForm from "./components/asset/asset-add/AddAssetForm";
 import AssetUpdate from "./components/asset/asset-update/AssetUpdate";
 import Asset from "./components/asset/Asset";
 import Profile from "./components/profile/Profile";
+import Aou from "./components/about_us/Aou"
 
 export const APP_ROUTE = [
     {
@@ -91,5 +92,13 @@ export const USER_ROUTE = [
         exact : true,
         hidden: true,
         component : AssetUpdate,
+    },
+    {
+        name : "About us",
+        path : "/about",
+        to : "/about",
+        exact : true,
+        hidden: true,
+        component : Aou
     }
 ]
