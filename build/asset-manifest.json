@@ -1,25 +1,26 @@
 {
   "files": {
     "main.css": "/static/css/main.3fce6ed2.chunk.css",
-    "main.js": "/static/js/main.38dcc2d3.chunk.js",
-    "main.js.map": "/static/js/main.38dcc2d3.chunk.js.map",
+    "main.js": "/static/js/main.a60a0790.chunk.js",
+    "main.js.map": "/static/js/main.a60a0790.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.a160cbcd.js",
     "runtime-main.js.map": "/static/js/runtime-main.a160cbcd.js.map",
     "static/css/2.b48e39b2.chunk.css": "/static/css/2.b48e39b2.chunk.css",
-    "static/js/2.86e098ab.chunk.js": "/static/js/2.86e098ab.chunk.js",
-    "static/js/2.86e098ab.chunk.js.map": "/static/js/2.86e098ab.chunk.js.map",
+    "static/js/2.ab650442.chunk.js": "/static/js/2.ab650442.chunk.js",
+    "static/js/2.ab650442.chunk.js.map": "/static/js/2.ab650442.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.52f549e94c3469cede663c46400da99a.js": "/precache-manifest.52f549e94c3469cede663c46400da99a.js",
+    "precache-manifest.04586d624093b7bc3cf8b9c4f9e5898b.js": "/precache-manifest.04586d624093b7bc3cf8b9c4f9e5898b.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.b48e39b2.chunk.css.map": "/static/css/2.b48e39b2.chunk.css.map",
     "static/css/main.3fce6ed2.chunk.css.map": "/static/css/main.3fce6ed2.chunk.css.map",
-    "static/js/2.86e098ab.chunk.js.LICENSE.txt": "/static/js/2.86e098ab.chunk.js.LICENSE.txt",
+    "static/js/2.ab650442.chunk.js.LICENSE.txt": "/static/js/2.ab650442.chunk.js.LICENSE.txt",
     "static/media/an.png": "/static/media/an.f5ea6fc8.png",
     "static/media/assetnest-horizontal.svg": "/static/media/assetnest-horizontal.73488437.svg",
     "static/media/chandra.png": "/static/media/chandra.56a98d3c.png",
     "static/media/danang.png": "/static/media/danang.551fbc1d.png",
     "static/media/goldy.png": "/static/media/goldy.60c1e78c.png",
     "static/media/header_sidebar.png": "/static/media/header_sidebar.701ff079.png",
+    "static/media/how.png": "/static/media/how.51ba7ffa.png",
     "static/media/iqbal.png": "/static/media/iqbal.d71aac97.png",
     "static/media/Login.scss": "/static/media/login-background.d1bfd213.svg",
     "static/media/nawa.png": "/static/media/nawa.bad692b0.png",
@@ -33,8 +34,8 @@
   "entrypoints": [
     "static/js/runtime-main.a160cbcd.js",
     "static/css/2.b48e39b2.chunk.css",
-    "static/js/2.86e098ab.chunk.js",
+    "static/js/2.ab650442.chunk.js",
     "static/css/main.3fce6ed2.chunk.css",
-    "static/js/main.38dcc2d3.chunk.js"
+    "static/js/main.a60a0790.chunk.js"
   ]
 }

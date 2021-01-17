@@ -16,6 +16,7 @@ import './Login.scss';
 
 import anButton from './an.png'
 import wiButton from './wi.png'
+import how from './how.png'
 
 
 export default function Login() {
@@ -26,6 +27,11 @@ export default function Login() {
     const [showAou, setShowAou] = useState(false);
     const handleClose = () => setShowAou(false);
     const handleShow = () => setShowAou(true);
+
+    //modal how
+    const [showHow, setShowHow] = useState(false);
+    const handleCloseHow = () => setShowHow(false);
+    const handleShowHow = () => setShowHow(true);
 
     const schema = Yup.object({
         inputEmail : Yup.string().email('invalid email').required('Required'),
@@ -117,16 +123,19 @@ export default function Login() {
                         </Button>
                     </Form>
                     <span className="mb-md-5"> 
-                        <a href=""> <img src={anButton} alt="" loading="lazy" width="35%" height="auto"/> 
+                        <a href="http://intip.in/AssetNestAndroid" target="_blank"> 
+                            <img src={anButton} alt="" loading="lazy" width="35%" height="auto"/> 
                         </a> 
-                        <a href=""> <img src={wiButton} alt="" loading="lazy"  width="35%" height="auto"/> </a>
+                        <a href="http://intip.in/AssetNestDesktop" target="_blank"> 
+                            <img src={wiButton} alt="" loading="lazy"  width="35%" height="auto"/> 
+                        </a>
                     </span>
                 </div>
                 <span className="test">
                     <Button className="aou" onClick={handleShow}>
                         <AiOutlineInfoCircle/> <span className="hide">About us</span>
                     </Button>
-                    <Button className="aou">
+                    <Button className="aou" onClick={handleShowHow}>
                         <AiFillQuestionCircle/> <span className="hide">How to use</span>
                     </Button>
                 </span>
@@ -138,6 +147,15 @@ export default function Login() {
                 <Modal.Title>About Us</Modal.Title>
                 </Modal.Header>
                 <Modal.Body><Aou/></Modal.Body>
+            </Modal>
+
+            <Modal size='xl' show={showHow} onHide={handleCloseHow}>
+                <Modal.Header closeButton>
+                <Modal.Title>How to Use</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <img src={how} style={{width:"-moz-available"}} />
+                </Modal.Body>
             </Modal>
             </>
         )}
