@@ -70,7 +70,6 @@ export default function Sidebar(props) {
                                 <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>       
                                 <Dropdown.Divider />
                                 <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-                                <Dropdown.Item ><Link to="/about">About us</Link></Dropdown.Item> 
                             </Dropdown.Menu>
                         </Dropdown>
                 </Navbar>

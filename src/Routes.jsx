@@ -92,13 +92,5 @@ export const USER_ROUTE = [
         exact : true,
         hidden: true,
         component : AssetUpdate,
-    },
-    {
-        name : "About us",
-        path : "/about",
-        to : "/about",
-        exact : true,
-        hidden: true,
-        component : Aou
     }
 ]

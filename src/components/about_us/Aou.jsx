@@ -1,11 +1,11 @@
 import React from 'react'
 import "./Aou.scss"
-import iqbal from './Iqbal.jpg'
-import nawa from './Nawa.png'
-import goldy from './Goldy.jpg'
-import chandra from './Kirana.jpg'
-import risma from './Febilenia.jpeg'
-import danang from './Danang.jpeg'
+import iqbal from './iqbal.png'
+import nawa from './nawa.png'
+import goldy from './goldy.png'
+import chandra from './chandra.png'
+import risma from './risma.png'
+import danang from './danang.png'
 import sponsor from './sponsor.png'
 import support from './support.png'
 
